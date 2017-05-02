@@ -49,7 +49,7 @@ class DBManager
     public function insert($table, $data = [])
     {
         $dbh = $this->getDbh();
-        $query = 'INSERT INTO `' . $table . '` VALUES ("",';
+        $query = 'INSERT INTO `' . $table . '` VALUES (NULL,';
         $first = true;
         foreach ($data AS $k => $value)
         {

@@ -46,15 +46,17 @@ class UserManager
     
     private function userHash($pass)
     {
-        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
+        $hash = password_hash($pass, PASSWORD_BCRYPT);
         return $hash;
     }
     
     public function userRegister($data)
     {
         $user['username'] = $data['username'];
-        $user['password'] = $this->userHash($data['password']);
         $user['email'] = $data['email'];
+        $user['password'] = $this->userHash($data['password']);
+        $user['firstname'] = $data['firstname'];
+        $user['lastname'] = $data['lastname'];
         $this->DBManager->insert('users', $user);
     }
     
@@ -65,9 +67,10 @@ class UserManager
         $user = $this->getUserByUsername($data['username']);
         if ($user === false)
             return false;
-        $hash = $this->userHash($data['password']);
-        if ($hash !== $user['password'])
+
+        if (!password_verify($data['password'], $user['password']))
         {
+            echo 'nerd';
             return false;
         }
         return true;
