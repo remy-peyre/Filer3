@@ -1,0 +1,14 @@
+.DS_Store
+.idea
+.vscode
+~
+.#
+#*#
+/vendor
+/composer.phar
+/cache
+/config
+!/cache/twig/.gitkeep
+!/uploads/.gitkeep
+/uploads
+/logs
