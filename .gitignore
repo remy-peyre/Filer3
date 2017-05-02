@@ -12,3 +12,4 @@
 !/uploads/.gitkeep
 /uploads
 /logs
+/node_modules
