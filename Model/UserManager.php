@@ -32,16 +32,61 @@ class UserManager
                                 ['username' => $username]);
         return $data;
     }
+
+    public function getUserByEmail($email)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE email = :email",
+                                ['email' => $email]);
+        return $data;
+    }
     
     public function userCheckRegister($data)
     {
-        if (empty($data['username']) OR empty($data['email']) OR empty($data['password']))
-            return false;
-        $data = $this->getUserByUsername($data['username']);
-        if ($data !== false)
-            return false;
-        // TODO : Check valid email
-        return true;
+
+        $errors = array();
+        $isFormGood = true;
+
+        if (empty($data['username']) OR empty($data['email']) OR empty($data['password'])){
+            $errors['fields'] = "Missing Fields";
+        }
+
+        $checkEmail = $this->getUserByEmail($data['email']);
+        if($checkEmail !== false){
+            $errors['email'] = 'email already used';
+            $isFormGood = false;
+        }
+
+    
+        $checkUsername = $this->getUserByUsername($data['username']);
+        if($checkUsername !== false){
+            $errors['username'] = 'Username already used';
+            $isFormGood = false;
+        }
+
+        if(!$this->emailValid($data['email'])){
+            $errors['email'] = "Email not conform";
+            $isFormGood = false;
+        }
+
+        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
+            $errors['password'] = "Your password must have at least 6 characters, one number and one uppercase";
+            $isFormGood = false;
+        }
+
+        if( $data['password'] != $data['verif_password']){
+            $errors['password'] = "Password doesn't match";
+            $isFormGood = false;
+        }
+
+        return $errors;
+    }
+
+    private function emailValid($email){
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+    //Minimum : 6 caractères avec au moins une lettre majuscule et un nombre
+    private function passwordValid($password){
+        return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $password);
     }
     
     private function userHash($pass)
@@ -62,18 +107,21 @@ class UserManager
     
     public function userCheckLogin($data)
     {
-        if (empty($data['username']) OR empty($data['password']))
-            return false;
-        $user = $this->getUserByUsername($data['username']);
-        if ($user === false)
-            return false;
-
-        if (!password_verify($data['password'], $user['password']))
-        {
-            echo 'nerd';
-            return false;
+        $errors = array();
+        if (empty($data['username']) OR empty($data['password'])){
+            $errors['fields'] = "Missing fields";
         }
-        return true;
+        $user = $this->getUserByUsername($data['username']);
+        if ($user === false){
+            $errors['username'] = "Unknown username";
+        }
+        else{
+            if (!password_verify($data['password'], $user['password']))
+            {
+                $errors['password'] = "Password doesn't match with this account";
+            }
+        }
+        return $errors;
     }
     
     public function userLogin($username)

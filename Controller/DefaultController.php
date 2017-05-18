@@ -6,24 +6,16 @@ use Model\UserManager;
 
 class DefaultController extends BaseController
 {
-    public function homeAction()
+    public function user_accountAction()
     {
         if (!empty($_SESSION['user_id']))
         {
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             
-            echo $this->renderView('home.html.twig',
-                                   ['name' => $user['username']]);
+            echo $this->renderView('user_account.html.twig',
+                                   ['user' => $user]);
         }
-        else
-            $this->redirect('login');
-    }
-
-    public function aboutAction()
-    {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('about.html.twig');
         else
             $this->redirect('login');
     }

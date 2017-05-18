@@ -12,16 +12,19 @@ class SecurityController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $manager = UserManager::getInstance();
-            if ($manager->userCheckLogin($_POST))
+            if (empty($manager->userCheckLogin($_POST)))
             {
                 $manager->userLogin($_POST['username']);
-                $this->redirect('home');
+                $this->redirect('user_account');
             }
             else {
-                $error = "Invalid username or password";
+                $errors = $manager->userCheckLogin($_POST);
+                echo $this->renderView('login.html.twig', ['errors' => $errors,]);
             }
         }
-        echo $this->renderView('login.html.twig', ['error' => $error]);
+        else{
+            echo $this->renderView('login.html.twig');
+        }
     }
 
     public function logoutAction()
@@ -32,19 +35,22 @@ class SecurityController extends BaseController
 
     public function registerAction()
     {
-        $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $manager = UserManager::getInstance();
-            if ($manager->userCheckRegister($_POST))
+            if (empty($manager->userCheckRegister($_POST)))
             {
+                var_dump($manager->userCheckRegister($_POST));
                 $manager->userRegister($_POST);
-                $this->redirect('home');
+                $this->redirect('login');
             }
             else {
-                $error = "Invalid data";
+               $errors = $manager->userCheckRegister($_POST);
+               echo $this->renderView('register.html.twig', ['errors' => $errors,]);
             }    
         }
-        echo $this->renderView('register.html.twig', ['error' => $error]);
+        else{
+            echo $this->renderView('register.html.twig');
+        }
     }
 }

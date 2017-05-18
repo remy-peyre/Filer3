@@ -1,10 +1,17 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+<div>
+    {% for error in errors %}
+        {{ error }}<br>
+    {% endfor %}
+</div>
+
 <form action="?action=register" method="POST">
     Username : <input type="text" name="username"><br>
     Email : <input type="text" name="email"><br>
     Password : <input type="password" name="password"><br>
+    Password Verif : <input type="password" name="verif_password"><br>
     Firstname : <input type="text" name="firstname"><br>
     Lastname : <input type="text" name="lastname"><br>
     <input type="submit">

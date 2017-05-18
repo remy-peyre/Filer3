@@ -10,8 +10,13 @@
         </header>
         <nav>
             <ul>
-                <li><a href="?action=home">Home</a></li>
-                <li><a href="?action=about">About Us</a></li>
+                {% if user is defined %}
+                    <li><a href="?action=user_account">My Files</a></li>
+                    <li><a href="?action=logout">Logout</a></li>
+                {% else %}
+                    <li><a href="?action=register">Register</a></li>
+                    <li><a href="?action=login">Login</a></li>
+                {% endif %}
             </ul>
         </nav>
         {% if error is defined and error is not empty %}
