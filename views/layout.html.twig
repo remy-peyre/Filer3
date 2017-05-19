@@ -1,32 +1,51 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>OOP MVC</title>
+        <title>FILER 3</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=0.2">
+        <!--<link rel="icon" type="image/png" href="">-->
+        <link rel="stylesheet" href="web/style/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     </head>
     <body>
         <header>
-            Awesome header
+            <nav>
+                <div class="name_project">UPTOFILES</div>
+                <div class="right_part_menu">
+                    {% if user is defined %}
+                        <div>
+                            <a href="?action=user_account">
+                                My Files
+                            </a>
+                        </div>
+                        <div class="color_link_menu_right">
+                            <a href="?action=logout">
+                                Logout
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="color_link_menu_right">
+                            <a href="?action=register">
+                                Register
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </nav>
         </header>
-        <nav>
-            <ul>
-                {% if user is defined %}
-                    <li><a href="?action=user_account">My Files</a></li>
-                    <li><a href="?action=logout">Logout</a></li>
-                {% else %}
-                    <li><a href="?action=register">Register</a></li>
-                    <li><a href="?action=login">Login</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% if error is defined and error is not empty %}
-        <p class="error">Error : {{ error }}</p>
-        {% endif %}
 
-        <div>
-            {% block content %}{% endblock %}
-        </div>
-        
-        <footer>SLT LES BROS</footer>
+        <main>
+
+            {% if error is defined and error is not empty %}
+            <p class="error">Error : {{ error }}</p>
+            {% endif %}
+
+            <div>
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+
+        <footer>Footer</footer>
     </body>
 </html>
