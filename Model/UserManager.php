@@ -5,6 +5,7 @@ namespace Model;
 class UserManager
 {
     private $DBManager;
+    private $FilesManager;
     
     private static $instance = null;
     public static function getInstance()
@@ -103,6 +104,8 @@ class UserManager
         $user['firstname'] = $data['firstname'];
         $user['lastname'] = $data['lastname'];
         $this->DBManager->insert('users', $user);
+        $user = $this->getUserByUsername($user['username']);
+        mkdir("uploads/". $user['id']);
     }
     
     public function userCheckLogin($data)
