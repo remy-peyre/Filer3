@@ -7,10 +7,33 @@
             {{ error }}<br>
         {% endfor %}
     </div>
-    <form action="?action=login" method="POST">
-        Login : <input type="text" name="username"><br>
-        Password : <input type="password" name="password"><br>
-        <input type="submit">
-    </form>
+
+    <h2>Uptofiles </h2>
+    <div class="container_login">
+        <div class="description_login">
+            <p class="color_important_p">UPLOAD, STORE, MANAGE AND TRANSFER ALL YOUR LARGE FILES</p>
+            <br>
+            <p>Uptofiles offers secure cloudhosting for free and provides a convenient way to upload, store, manage, and E-mail large files with clients and collaborate with co-workers.</p>
+            <br>
+            <p>Store your files safely in the cloud and access them from any computer, mac and mobile device.</p>
+        </div>
+
+        <div class="login_part">
+            <div class="login-triangle"></div>
+
+            <form class="form_login login-container" action="?action=login" method="POST">
+                Login : <input type="text" name="username" placeholder="Username">
+                Password : <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Log in">
+            </form>
+        </div>
+
+
+
+
+
+
+    </div>
+
 </section>
 {% endblock %}
