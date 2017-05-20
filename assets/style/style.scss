@@ -57,7 +57,14 @@ main{
     display: flex;
     flex-direction: column;
     width: 100%;
-    
+
+    .errors_style{
+        width: 100%;
+        text-align: center;
+        color: #fc5454;
+        padding-top: 15px;
+    }
+
     h2{
         color: white;
         font-size: 35px;
@@ -128,5 +135,74 @@ main{
         .login_part input[type="submit"]:focus {
             border-color: #05a;
         }
+    }
+}
+.register{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #F3F3F3;
+
+    h2{
+        margin-top: 15px;
+    }
+    h3{
+        margin-top: 15px;
+    }
+    .errors_style{
+        width: 100%;
+        text-align: center;
+        color: #fc5454;
+        padding-top: 15px;
+    }
+    .register-container {
+        background: #ebebeb;
+        padding: 12px;
+        width: 100%;
+    }
+    .register_part {
+        margin-top: 2%;
+        width: 50%;
+        margin-bottom: 20px;
+    }
+    .register_part p {
+        padding: 12px;
+        margin: auto;
+    }
+    .register_part input {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        border-width: 1px;
+        border-style: solid;
+        padding: 16px;
+        outline: 0;
+        font-family: inherit;
+        font-size: 0.95em;
+    }
+    .register_part input[type="text"],
+    .register_part input[type="password"] {
+        background: #fff;
+        border-color: #bbb;
+        color: #555;
+    }
+    .register_part input[type="text"]:focus,
+    .register_part input[type="password"]:focus {
+        border-color: #888;
+    }
+    .register_part input[type="submit"] {
+        background: #3B5998;
+        border-color: transparent;
+        color: #fff;
+        cursor: pointer;
+    }
+    .register_part input[type="submit"]:hover {
+        background: #17c;
+    }
+    .register_part input[type="submit"]:focus {
+        border-color: #05a;
     }
 }
