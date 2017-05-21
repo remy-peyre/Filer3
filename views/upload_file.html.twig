@@ -1,0 +1,36 @@
+{% extends 'user_account.html.twig' %}
+
+{% block content %}
+<section class="upload">
+    <div>
+        {% for error in errors %}
+            {{ error }}<br>
+        {% endfor %}
+    </div>
+    <div>
+        {% for file in allFiles %}
+            <p> {{file.type}}</p>
+            {% if file.type == "image" %}
+                <img src="{{file.filepath}}" alt="{{file.filename}}">
+                <br>
+                <p>{{file.filepath}}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <form method="POST" action="?action=upload_file" enctype="multipart/form-data">
+        <p>UPLOAD :</p>
+        <p>Pick a File<br>
+            Click on Open and after Upload<br>
+            Files .jpg / .jpeg / .png / .pdf / .txt / .mp3 / .mp4
+            <br>
+            <input type="file" name="uploaded_file">
+            <input type="txt" name="initial_new_name">
+            <input type="submit" value="Upload">
+        </p>
+    </form>
+</section>
+{% endblock %}
+
+
+
+

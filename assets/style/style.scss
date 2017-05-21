@@ -249,3 +249,57 @@ main{
         align-items: center;
     }
 }
+.user_account{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    .column_left{
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .area_right{
+        width: 80%;
+
+        .first_row_option{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            height: 50px;
+            background-color: #eeeeee;
+
+            .button_option{
+                padding: 5px 6px;
+                border-radius: 5px;
+                width: 70px;
+                background-color: #00a651;
+                height: 15px;
+                margin-top: auto;
+                margin-bottom: auto;
+                text-align: center;
+                margin-left: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                a{
+                    color: white;
+
+                }
+            }
+        }
+
+        .column_right_containte{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    }
+}

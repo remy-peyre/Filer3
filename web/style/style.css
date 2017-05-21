@@ -238,4 +238,54 @@ header nav .right_part_menu .color_link_menu_right a {
   align-items: center;
 }
 
+.user_account {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.user_account .column_left {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.user_account .area_right {
+  width: 80%;
+}
+.user_account .area_right .first_row_option {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  height: 50px;
+  background-color: #eeeeee;
+}
+.user_account .area_right .first_row_option .button_option {
+  padding: 5px 6px;
+  border-radius: 5px;
+  width: 70px;
+  background-color: #00a651;
+  height: 15px;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: center;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user_account .area_right .first_row_option .button_option a {
+  color: white;
+}
+.user_account .area_right .column_right_containte {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 /*# sourceMappingURL=style.css.map */
