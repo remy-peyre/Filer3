@@ -32,5 +32,12 @@ class FilesController extends BaseController
         }
     }
 
+    public function uploadAction()
+    {
+        if (!empty($_SESSION['user_id']))
+            echo $this->renderView('upload.html.twig');
+        else
+            $this->redirect('login');
+    }
 
 }
