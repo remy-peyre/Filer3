@@ -34,10 +34,16 @@ class FilesController extends BaseController
 
     public function uploadAction()
     {
-        if (!empty($_SESSION['user_id']))
-            echo $this->renderView('upload.html.twig');
-        else
+        if (!empty($_SESSION['user_id'])){
+            $manager = UserManager::getInstance();
+            $user = $manager->getUserById($_SESSION['user_id']);
+            $fileManager = FilesManager::getInstance();
+            $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+            echo $this->renderView('upload.html.twig', ['user' => $user, 'allFiles' => $allFiles]);
+        }
+        else{
             $this->redirect('login');
+        }     
     }
 
 }
