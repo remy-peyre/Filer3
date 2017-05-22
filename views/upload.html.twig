@@ -8,16 +8,8 @@
         {% endfor %}
     </div>
     <div>
-        {% for file in allFiles %}
-            <p> {{file.type}}</p>
-            {% if file.type == "image" %}
-                <img src="{{file.filepath}}" alt="{{file.filename}}">
-                <br>
-                <p>{{file.filepath}}</p>
-            {% endif %}
-        {% endfor %}
     </div>
-    <form method="POST" action="?action=upload_file" enctype="multipart/form-data">
+    <form method="POST" action="?action=upload" enctype="multipart/form-data">
         <p>UPLOAD :</p>
         <p>Pick a File<br>
             Click on Open and after Upload<br>

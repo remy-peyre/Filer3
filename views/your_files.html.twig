@@ -4,7 +4,15 @@
 
     your files
 
-
+        {% for file in allFiles %}
+            <p> {{file.type}}</p>
+            <p> {{file.filename}}</p>
+            {% if file.type == "image" %}
+                <img src="{{file.filepath}}" alt="{{file.filename}}">
+                <br>
+                <p>{{file.filepath}}</p>
+            {% endif %}
+        {% endfor %}
 <!--<section class="upload">
     <div>
         {% for error in errors %}
