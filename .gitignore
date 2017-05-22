@@ -9,7 +9,7 @@
 /cache
 /config
 !/cache/twig/.gitkeep
-/uploads
+/uploads/*
 !/uploads/.gitkeep
 /logs
 /node_modules
