@@ -14,7 +14,7 @@ class FilesController extends BaseController
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-                if(isset($_FILES['uploaded_file'])){
+                if(!empty($_POST['upload_button'])){
                     $manager = FilesManager::getInstance();
                     if(empty($manager->checkUploadFile($_FILES['uploaded_file'], $_POST))){
                         $manager->uploadFile($_FILES['uploaded_file'], $_POST);

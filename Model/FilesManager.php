@@ -30,21 +30,26 @@ class FilesManager{
     }
 
     public function checkUploadFile($data, $post){
-        $type = dirname(mime_content_type($data['tmp_name']));
-        $extensions = array('image', 'text', 'application', 'audio', 'video');
-        if(in_array($type, $extensions) === false){
-           $errors['extensions'] = 'this extension isn\'t allowed';
-        }
+        if(!empty($data['name'])){
+            $type = dirname(mime_content_type($data['tmp_name']));
+            $extensions = array('image', 'text', 'application', 'audio', 'video');
+            if(in_array($type, $extensions) === false){
+            $errors['extensions'] = 'this extension isn\'t allowed';
+            }
 
-        if(!empty($post['initial_new_name'])){
-           $nameToTest = $post['initial_new_name'] .  strrchr(basename($data['name']), '.');
+            if(!empty($post['initial_new_name'])){
+            $nameToTest = $post['initial_new_name'] .  strrchr(basename($data['name']), '.');
+            }
+            else{
+                $nameToTest = $data['name'];
+            }
+            $data = $this->getFileByFilename($nameToTest);
+            if($data){
+                $errors['filename'] = "Name already used";
+            }
         }
         else{
-            $nameToTest = $data['name'];
-        }
-        $data = $this->getFileByFilename($nameToTest);
-        if($data){
-            $errors['filename'] = "Name already used";
+            $errors['fields'] = 'You have to select one file';
         }
         return $errors;
     }
