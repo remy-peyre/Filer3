@@ -113,8 +113,21 @@ class FilesManager{
         return true;
     }
 
-    public function checkRenameFile($file_id){
+    public function checkRenameFile($file_id, $new_name){
         $errors = array();
+        if(!empty($file_id)){
+            $data = $this->getFileById($file_id);
+            if(empty($data)){
+                $errors['unknown_id'] = "We can't find this file"; 
+            }
+            $test_name = $this->getFileByFilename($new_name);
+            if(!empty($test_name)){
+                $errors['name_already_used'] = "You already got one file with this name !";
+            }
+        }
+        else{
+            $errors['missing_id'] = "Can't find id please try again";
+        }
         return $errors;
     }
 

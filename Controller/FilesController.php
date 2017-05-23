@@ -59,14 +59,14 @@ class FilesController extends BaseController
                     }
                 }
                 else if(isset($_POST['id_file_to_rename'])){
-                    if(empty($fileManager->checkRenameFile($_POST['id_file_to_rename']))){
+                    if(empty($fileManager->checkRenameFile($_POST['id_file_to_rename'], $_POST['new_name']))){
                         $fileManager->renameFile($_POST['id_file_to_rename'], $_POST['new_name']);
                         $allFiles = $fileManager->showFiles($_SESSION['user_id']);
                         echo $this->renderView('your_files.html.twig',
                                     ['user' => $user, 'allFiles' => $allFiles]);
                     }
                     else{
-                        $errors = $fileManager->checkRenameFile($_POST['id_file_to_rename']);
+                        $errors = $fileManager->checkRenameFile($_POST['id_file_to_rename'], $_POST['new_name']);
                         $allFiles = $fileManager->showFiles($_SESSION['user_id']);
                         echo $this->renderView('your_files.html.twig',
                                     ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles]);                    
