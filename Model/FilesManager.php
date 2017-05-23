@@ -38,6 +38,7 @@ class FilesManager{
 
     public function checkUploadFile($data, $post)
     {
+        $errors = array();
         if(!empty($data['name'])){
             $type = dirname(mime_content_type($data['tmp_name']));
             $extensions = array('image', 'text', 'application', 'audio', 'video');
@@ -59,12 +60,7 @@ class FilesManager{
         else{
             $errors['fields'] = 'You have to select one file';
         }
-        if(isset($errors)){
-            return $errors;
-        }
-        else{
-            return true;
-        }
+        return $errors;
     }
 
     public function uploadFile($data, $post)
@@ -93,21 +89,17 @@ class FilesManager{
 
     public function checkdeleteFile($file_id)
     {
+        $errors = array();
         if(!empty($file_id)){
             $data = $this->getFileById($file_id);
-            if(!$data){
+            if(empty($data)){
                 $errors['unknown_id'] = "We can't find this file"; 
             }
         }
         else{
             $errors['missing_id'] = "Can't find id please try again";
         }
-        if(isset($errors)){
-            return $errors;
-        }
-        else{
-            return true;
-        }
+        return $errors;
     }
 
     public function deleteFile($file_id)

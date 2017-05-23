@@ -16,7 +16,7 @@ class FilesController extends BaseController
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(!empty($_POST['upload_button'])){
                     $fileManager = FilesManager::getInstance();
-                    if($fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST)){
+                    if(empty($fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST))){
                         $fileManager->uploadFile($_FILES['uploaded_file'], $_POST);
                         $this->redirect('your_files');
                     }
@@ -45,7 +45,7 @@ class FilesController extends BaseController
             $user = $manager->getUserById($_SESSION['user_id']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(isset($_POST['id_file_to_delete'])){
-                    if($fileManager->checkDeleteFile($_POST['id_file_to_delete'])){
+                    if(empty($fileManager->checkDeleteFile($_POST['id_file_to_delete']))){
                         $fileManager->deleteFile($_POST['id_file_to_delete']);
                         $allFiles = $fileManager->showFiles($_SESSION['user_id']);
                         echo $this->renderView('your_files.html.twig',

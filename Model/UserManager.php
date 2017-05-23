@@ -43,6 +43,7 @@ class UserManager
     
     public function userCheckRegister($data)
     {
+        $errors = array();
         if (empty($data['username']) OR empty($data['email']) OR empty($data['password'])){
             $errors['fields'] = "Missing Fields";
         }
@@ -69,13 +70,7 @@ class UserManager
         if( $data['password'] != $data['verif_password']){
             $errors['password'] = "Password doesn't match";
         }
-
-        if(isset($errors)){
-            return $errors;
-        }
-        else{
-            return true;
-        } 
+        return true;
     }
 
     private function emailValid($email){
@@ -106,6 +101,7 @@ class UserManager
     
     public function userCheckLogin($data)
     {
+        $errors = array();
         if (empty($data['username']) OR empty($data['password'])){
             $errors['fields'] = "Missing fields";
         }
@@ -119,12 +115,7 @@ class UserManager
                 $errors['password'] = "Password doesn't match with this account";
             }
         }
-        if(isset($errors)){
-            return $errors;
-        }
-        else{
-            return true;
-        } 
+        return $errors;
     }
     
     public function userLogin($username)
