@@ -21,4 +21,13 @@ class DefaultController extends BaseController
         else
             $this->redirect('login');
     }
+
+    public function profilAction()
+    {
+        if (!empty($_SESSION['user_id'])){
+            echo $this->renderView('profil.html.twig');
+        }
+        else
+            $this->redirect('login');
+    }
 }
