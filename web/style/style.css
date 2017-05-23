@@ -216,6 +216,9 @@ header nav .right_part_menu .color_link_menu_right a {
   justify-content: center;
   align-items: center;
 }
+.header_user_account .width_title_menu .link {
+  color: white;
+}
 .header_user_account .width_first_menu {
   width: 68%;
   display: inline-flex;
@@ -223,8 +226,12 @@ header nav .right_part_menu .color_link_menu_right a {
   height: 60px;
   align-items: center;
 }
+.header_user_account .width_first_menu .link {
+  color: white;
+}
 .header_user_account .width_first_menu .width_first_option {
   width: 20%;
+  margin-left: 10px;
 }
 .header_user_account .width_first_menu .width_seconde_option {
   width: 20%;
@@ -237,6 +244,9 @@ header nav .right_part_menu .color_link_menu_right a {
   justify-content: center;
   align-items: center;
 }
+.header_user_account .width_logout .link {
+  color: white;
+}
 
 .user_account {
   display: flex;
@@ -248,8 +258,18 @@ header nav .right_part_menu .color_link_menu_right a {
   width: 20%;
   display: flex;
   justify-content: center;
-  align-items: center;
   text-align: center;
+  background-color: #3B5998;
+  height: 600px;
+  color: white;
+}
+.user_account .column_left .user_account_right_part {
+  width: 100%;
+  border-top: 1px solid #ababab;
+  color: white;
+}
+.user_account .column_left .user_account_right_part .containt_left_view {
+  margin-top: 10px;
 }
 .user_account .area_right {
   width: 80%;
@@ -286,6 +306,89 @@ header nav .right_part_menu .color_link_menu_right a {
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
+}
+.user_account .area_right .bottom_area_grey {
+  width: 100%;
+  height: 250px;
+  background-color: #eeeeee;
+}
+
+.upload {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.upload .size_error_upload {
+  width: 100%;
+  text-align: center;
+  color: red;
+  margin-top: 20px;
+}
+.upload .width_all_form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.upload .width_all_form .size_form_upload {
+  width: 46%;
+}
+.upload .width_all_form .size_form_replace {
+  width: 46%;
+}
+
+.your_files {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-bottom: 20px;
+}
+.your_files .size_picture_upload {
+  width: 150px;
+  height: 150px;
+  padding: 5px;
+}
+.your_files .form_delete {
+  text-align: right;
+  margin-top: -12px;
+  margin-right: -10px;
+}
+.your_files .form_delete .none {
+  display: none;
+}
+.your_files .size_row_img_show {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.your_files .size_row_img_show .column_for_all_info {
+  border: 1px solid #ababab;
+  margin-right: 15px;
+  width: 160px;
+  margin-bottom: 15px;
+  background-color: #eaeaea;
+}
+.your_files .size_row_img_show .column_for_all_info p {
+  text-align: center;
+}
+.your_files .size_row_img_show .column_for_all_info input[type=submit] {
+  background-image: url(../image/cancel.png);
+  background-size: 100% 100%;
+  border: 0;
+  border-radius: 50%;
+  background-color: white;
+  padding: 5px;
+  height: 20px;
+  width: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -70,7 +70,7 @@ class UserManager
         if( $data['password'] != $data['verif_password']){
             $errors['password'] = "Password doesn't match";
         }
-        return true;
+        return $errors;
     }
 
     private function emailValid($email){
