@@ -43,10 +43,6 @@ class UserManager
     
     public function userCheckRegister($data)
     {
-
-        $errors = array();
-        $isFormGood = true;
-
         if (empty($data['username']) OR empty($data['email']) OR empty($data['password'])){
             $errors['fields'] = "Missing Fields";
         }
@@ -54,32 +50,32 @@ class UserManager
         $checkEmail = $this->getUserByEmail($data['email']);
         if($checkEmail !== false){
             $errors['email'] = 'email already used';
-            $isFormGood = false;
         }
 
     
         $checkUsername = $this->getUserByUsername($data['username']);
         if($checkUsername !== false){
             $errors['username'] = 'Username already used';
-            $isFormGood = false;
         }
 
         if(!$this->emailValid($data['email'])){
             $errors['email'] = "Email not conform";
-            $isFormGood = false;
         }
 
         if(!isset($data['password']) || !$this->passwordValid($data['password'])){
             $errors['password'] = "Your password must have at least 6 characters, one number and one uppercase";
-            $isFormGood = false;
         }
 
         if( $data['password'] != $data['verif_password']){
             $errors['password'] = "Password doesn't match";
-            $isFormGood = false;
         }
 
-        return $errors;
+        if(isset($errors)){
+            return $errors;
+        }
+        else{
+            return true;
+        } 
     }
 
     private function emailValid($email){
@@ -110,7 +106,6 @@ class UserManager
     
     public function userCheckLogin($data)
     {
-        $errors = array();
         if (empty($data['username']) OR empty($data['password'])){
             $errors['fields'] = "Missing fields";
         }
@@ -124,7 +119,12 @@ class UserManager
                 $errors['password'] = "Password doesn't match with this account";
             }
         }
-        return $errors;
+        if(isset($errors)){
+            return $errors;
+        }
+        else{
+            return true;
+        } 
     }
     
     public function userLogin($username)

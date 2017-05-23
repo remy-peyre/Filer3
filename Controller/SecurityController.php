@@ -12,7 +12,7 @@ class SecurityController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $manager = UserManager::getInstance();
-            if (empty($manager->userCheckLogin($_POST)))
+            if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
                 $this->redirect('user_account');
@@ -38,7 +38,7 @@ class SecurityController extends BaseController
         if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $manager = UserManager::getInstance();
-            if (empty($manager->userCheckRegister($_POST)))
+            if ($manager->userCheckRegister($_POST))
             {
                 var_dump($manager->userCheckRegister($_POST));
                 $manager->userRegister($_POST);

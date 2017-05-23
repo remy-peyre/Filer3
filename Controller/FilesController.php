@@ -15,13 +15,13 @@ class FilesController extends BaseController
             $user = $manager->getUserById($_SESSION['user_id']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(!empty($_POST['upload_button'])){
-                    $manager = FilesManager::getInstance();
-                    if(empty($manager->checkUploadFile($_FILES['uploaded_file'], $_POST))){
-                        $manager->uploadFile($_FILES['uploaded_file'], $_POST);
+                    $fileManager = FilesManager::getInstance();
+                    if($fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST)){
+                        $fileManager->uploadFile($_FILES['uploaded_file'], $_POST);
                         $this->redirect('your_files');
                     }
                     else{
-                        $errors = $manager->checkUploadFile($_FILES['uploaded_file'], $_POST);
+                        $errors = $fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST);
                         echo $this->renderView('upload.html.twig',
                                     ['user' => $user, 'errors' => $errors]);
                     }
@@ -41,14 +41,38 @@ class FilesController extends BaseController
     {
         if (!empty($_SESSION['user_id'])){
             $manager = UserManager::getInstance();
-            $user = $manager->getUserById($_SESSION['user_id']);
             $fileManager = FilesManager::getInstance();
-            $allFiles = $fileManager->showFiles($_SESSION['user_id']);
-            echo $this->renderView('your_files.html.twig',
-                        ['user' => $user, 'allFiles' => $allFiles]);
+            $user = $manager->getUserById($_SESSION['user_id']);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                if(isset($_POST['id_file_to_delete'])){
+                    if($fileManager->checkDeleteFile($_POST['id_file_to_delete'])){
+                        $fileManager->deleteFile($_POST['id_file_to_delete']);
+                        $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                        echo $this->renderView('your_files.html.twig',
+                                    ['user' => $user, 'allFiles' => $allFiles]);
+                    }
+                    else{
+                        $errors = $fileManager->checkDeleteFile($_POST['id_file_to_delete']);
+                        $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                        echo $this->renderView('your_files.html.twig',
+                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles]);                    
+                    }
+                }
+                else{
+                    $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                    echo $this->renderView('your_files.html.twig',
+                                ['user' => $user, 'allFiles' => $allFiles]);
+                }
+            }
+            else{
+                $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                echo $this->renderView('your_files.html.twig',
+                            ['user' => $user, 'allFiles' => $allFiles]);
+            }
         }
-        else
+        else{
             $this->redirect('login');
+        } 
     }
 
 }

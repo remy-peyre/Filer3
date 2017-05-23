@@ -3,7 +3,11 @@
 {% block content %}
 
     your files
-
+    <div>
+        {% for error in errors %}
+            {{ error }}<br>
+        {% endfor %}
+    </div>
         {% for file in allFiles %}
             <p> {{file.type}}</p>
             <p> {{file.filename}}</p>
@@ -11,6 +15,10 @@
                 <img src="{{file.filepath}}" alt="{{file.filename}}">
                 <br>
                 <p>{{file.filepath}}</p>
+                <form method="POST" action="?action=your_files">
+                    <input type="text" name="id_file_to_delete" value="{{file.id}}">
+                    <input type="submit" value="supprimmer l'offre">
+                </form>
             {% endif %}
         {% endfor %}
 <!--<section class="upload">
