@@ -16,9 +16,14 @@
                         <!--<p>{{file.filepath}}</p>-->
                         <form class="form_delete" method="POST" action="?action=your_files">
                             <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
-                            <input type="submit" value=" ">
+                            <input type="submit" value="">
                         </form>
                         <img class="size_picture_upload" src="{{file.filepath}}" alt="{{file.filename}}">
+                        <form method="POST" action="?action=your_files">
+                            <input type="text" name="id_file_to_rename" value="{{file.id}}">
+                            <input type="text" name="new_name" value="" placeholder="ex : NewName -> NewName.ext">
+                            <input type="submit" value="">
+                        </form>
 
                     {% endif %}
                     <p> {{file.filename}}</p>
