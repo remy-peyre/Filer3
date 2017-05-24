@@ -101,4 +101,13 @@ class FilesController extends BaseController
         } 
     }
 
+    public function applicationAction()
+    {
+        if (!empty($_SESSION['user_id'])){
+            echo $this->renderView('application.html.twig');
+        }
+        else
+            $this->redirect('login');
+    }
+
 }
