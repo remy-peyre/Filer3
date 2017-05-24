@@ -7,7 +7,7 @@ use Model\FilesManager;
 
 class DefaultController extends BaseController
 {
-    public function user_accountAction()
+    public function userAccountAction()
     {
         if (!empty($_SESSION['user_id']))
         {
@@ -15,7 +15,7 @@ class DefaultController extends BaseController
             $user = $manager->getUserById($_SESSION['user_id']);
             $fileManager = FilesManager::getInstance();
             $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
-            echo $this->renderView('user_account.html.twig',
+            echo $this->renderView('userAccount.html.twig',
                                    ['user' => $user, 'allFiles' => $allFiles]);
         }
         else

@@ -7,7 +7,8 @@ use Model\FoldersManager;
 
 class FoldersController extends BaseController
 {
-    public function folderAction(){
+    public function folderAction()
+    {
         if (!empty($_SESSION['user_id'])){
             $manager = UserManager::getInstance();
             $folderManager = FoldersManager::getInstance();
@@ -17,7 +18,7 @@ class FoldersController extends BaseController
                 if(!empty($_POST['folder_name'])){
                     if(empty($folderManager->checkCreateFolder($_POST['folder_name'], $_POST['wich_folder']))){
                         $folderManager->createFolder($_POST['folder_name'], $_POST['wich_folder']);
-                        $this->redirect('your_files');
+                        $this->redirect('yourFiles');
                     }
                     else{
                         $errors = $folderManager->checkCreateFolder($_POST['folder_name'], $_POST['wich_folder']);
@@ -40,4 +41,15 @@ class FoldersController extends BaseController
             $this->redirect('login');
         }
     }
+
+    public function switchCurrentFolderAction()
+    {
+        if(!empty($_SESSION['user_id'])){
+
+        }
+        else{
+            $this->redirect('login');
+        }
+    }
+
 }
