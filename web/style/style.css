@@ -337,14 +337,42 @@ header nav .right_part_menu .color_link_menu_right a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   margin-top: 20px;
 }
 .upload .width_all_form .size_form_upload {
   width: 46%;
+  background-color: #eeeeee;
+}
+.upload .width_all_form .size_form_upload form {
+  padding: 10px;
+}
+.upload .width_all_form .size_form_upload form input[type=submit] {
+  width: 25%;
+  background-color: #3B5998;
+  border: 0;
+  color: white;
+  padding: 3px;
+}
+.upload .width_all_form .size_form_upload form .center_option {
+  text-align: center;
 }
 .upload .width_all_form .size_form_replace {
   width: 46%;
+  background-color: #eeeeee;
+}
+.upload .width_all_form .size_form_replace form {
+  padding: 10px;
+}
+.upload .width_all_form .size_form_replace form input[type=submit] {
+  width: 25%;
+  background-color: #3B5998;
+  border: 0;
+  color: white;
+  padding: 3px;
+}
+.upload .width_all_form .size_form_replace form .center_option {
+  text-align: center;
 }
 
 .your_files {

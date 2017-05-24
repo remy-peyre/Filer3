@@ -356,14 +356,46 @@ main{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-around;
         margin-top: 20px;
 
         .size_form_upload{
             width: 46%;
+            background-color: #eeeeee;
+
+            form{
+                padding: 10px;
+
+                input[type=submit]{
+                    width: 25%;
+                    background-color: #3B5998;
+                    border: 0;
+                    color: white;
+                    padding: 3px;
+                }
+                .center_option{
+                    text-align: center;
+                }
+            }
         }
         .size_form_replace{
             width: 46%;
+            background-color: #eeeeee;
+
+            form{
+                padding: 10px;
+
+                input[type=submit]{
+                    width: 25%;
+                    background-color: #3B5998;
+                    border: 0;
+                    color: white;
+                    padding: 3px;
+                }
+                .center_option{
+                    text-align: center;
+                }
+            }
         }
     }
 
