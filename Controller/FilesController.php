@@ -57,6 +57,7 @@ class FilesController extends BaseController
             $fileManager = FilesManager::getInstance();
             $folderManager = FoldersManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
+            $currentPath = $folderManager->giveCurrentPath($_SESSION['current_folder']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(isset($_POST['id_file_to_delete'])){
                     if(empty($fileManager->checkDeleteFile($_POST['id_file_to_delete']))){

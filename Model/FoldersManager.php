@@ -84,4 +84,22 @@ class FoldersManager{
         $_SESSION['current_folder'] = $new_folder_id;
     }
 
+    public function giveCurrentPath($folder_id, $current_path = "")
+    {
+        if($folder_id == 0){
+            $current_path = $current_path . "Dossier Principal";
+            $path = explode('/', $current_path);
+            $path_to_return = "";
+            for($i = count($path) -1; $i >= 0; $i-- ){
+                $path_to_return = $path_to_return . $path[$i] . '/';
+            }
+            echo $path_to_return;
+        }
+        else{
+            $folder = $this->DBManager->findOneSecure("SELECT * FROM folders WHERE user_id = :user_id AND id = :folder_id", ['user_id' => $_SESSION['user_id'], 'folder_id' => $folder_id]);
+            $current_path = $current_path . $folder['foldername'] . '/';
+            $parent_name = $this->giveCurrentPath($folder['container_id'], $current_path);
+        }
+    }
+
 }
