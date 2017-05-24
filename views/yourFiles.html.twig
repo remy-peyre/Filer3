@@ -1,4 +1,4 @@
-{% extends 'user_account.html.twig' %}
+{% extends 'userAccount.html.twig' %}
 
 {% block content %}
 <section class="your_files">
@@ -14,7 +14,7 @@
                 <img class="size_folder_upload" src="web/image/folder.png" alt="{{file.filepath}}">
                 {{ folder.foldername }}
             </div>
-            <form method="POST" action="?action=your_files">
+            <form method="POST" action="?action=yourFiles">
                 <input type="hidden" name="new_current_folder" value="{{folder.id}}">
                 <input type="submit" value="go to {{folder.foldername}}">
             </form>
@@ -28,7 +28,7 @@
 
                 {% if file.type == "image" %}
                     <!--<p>{{file.filepath}}</p>-->
-                    <form class="form_delete" method="POST" action="?action=your_files">
+                    <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
                     </form>
@@ -41,7 +41,7 @@
                         <div class="rename_button">Rename</div>
                     </div>
 
-                    <form class="form_rename none" method="POST" action="?action=your_files">
+                    <form class="form_rename none" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
                         <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
                         <input type="submit" value="Rename">
@@ -51,7 +51,7 @@
 
                 {% if file.type == "application" %}
                     <!--<p>{{file.filepath}}</p>-->
-                    <form class="form_delete" method="POST" action="?action=your_files">
+                    <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
                     </form>
@@ -64,7 +64,7 @@
                         <div class="rename_button">Rename</div>
                     </div>
 
-                    <form class="form_rename none" method="POST" action="?action=your_files">
+                    <form class="form_rename none" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
                         <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
                         <input type="submit" value="Rename">
@@ -74,7 +74,7 @@
 
                 {% if file.type == "audio" %}
                     <!--<p>{{file.filepath}}</p>-->
-                    <form class="form_delete" method="POST" action="?action=your_files">
+                    <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
                     </form>
@@ -87,7 +87,7 @@
                         <div class="rename_button">Rename</div>
                     </div>
 
-                    <form class="form_rename none" method="POST" action="?action=your_files">
+                    <form class="form_rename none" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
                         <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
                         <input type="submit" value="Rename">
@@ -97,7 +97,7 @@
 
                 {% if file.type == "video" %}
                     <!--<p>{{file.filepath}}</p>-->
-                    <form class="form_delete" method="POST" action="?action=your_files">
+                    <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
                     </form>
@@ -110,7 +110,7 @@
                         <div class="rename_button">Rename</div>
                     </div>
 
-                    <form class="form_rename none" method="POST" action="?action=your_files">
+                    <form class="form_rename none" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
                         <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
                         <input type="submit" value="Rename">

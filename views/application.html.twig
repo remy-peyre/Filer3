@@ -1,4 +1,4 @@
-{% extends 'user_account.html.twig' %}
+{% extends 'userAccount.html.twig' %}
 
 {% block nav %}
     <section class="user_account_right_part">
@@ -17,7 +17,7 @@
                 </a>
             </div>
             <div class="containt_left_view">
-                <a href="?action=audio_video">
+                <a href="?action=audioVideo">
                     AUDIO / VIDEO
                 </a>
             </div>
@@ -33,7 +33,7 @@
                 <!--<p> {{file.type}}</p>-->
                     {% if file.type == "application" %}
                         <!--<p>{{file.filepath}}</p>-->
-                        <form class="form_delete" method="POST" action="?action=your_files">
+                        <form class="form_delete" method="POST" action="?action=yourFiles">
                             <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                             <input type="submit" value="">
                         </form>
@@ -46,7 +46,7 @@
                             <div class="rename_button">Rename</div>
                         </div>
 
-                        <form class="form_rename none" method="POST" action="?action=your_files">
+                        <form class="form_rename none" method="POST" action="?action=yourFiles">
                             <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
                             <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
                             <input type="submit" value="Rename">

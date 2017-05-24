@@ -151,7 +151,7 @@ class FilesController extends BaseController
             $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
             $allFilesAudio = $fileManager->showAudio($_SESSION['user_id'], $_SESSION['current_folder']);
             $allFilesVideo = $fileManager->showVideo($_SESSION['user_id'], $_SESSION['current_folder']);
-            echo $this->renderView('audio_video.html.twig',
+            echo $this->renderView('audioVideo.html.twig',
                 ['user' => $user, 'allFilesAudio' => $allFilesAudio, 'allFilesVideo' => $allFilesVideo, 'allFolders' => $allFolders]);
         }
         else
