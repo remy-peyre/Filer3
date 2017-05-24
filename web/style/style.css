@@ -502,4 +502,32 @@ header nav .right_part_menu .color_link_menu_right a {
   display: none;
 }
 
+.folder {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.folder .form_create_folder {
+  width: 46%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #EEEEEE;
+}
+.folder .form_create_folder input[type=text] {
+  width: 50%;
+}
+.folder .form_create_folder select {
+  width: 52%;
+}
+.folder .form_create_folder input[type=submit] {
+  width: 52%;
+}
+
 /*# sourceMappingURL=style.css.map */

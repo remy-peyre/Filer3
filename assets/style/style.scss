@@ -535,5 +535,33 @@ main{
             }
         }
     }
+}
+.folder{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
+    .form_create_folder{
+        width: 46%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #EEEEEE;
+
+        input[type=text]{
+            width: 50%;
+        }
+        select{
+            width: 52%;
+        }
+        input[type=submit]{
+            width: 52%;
+        }
+    }
 }
