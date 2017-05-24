@@ -174,7 +174,7 @@ class FilesManager{
         return $data;       
     }
 
-    public function showPictures($user_id)
+    public function showPicture($user_id)
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
                                                 ['user_id' => $user_id, 'type' => "image"]);

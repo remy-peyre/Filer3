@@ -1,7 +1,54 @@
 {% extends 'user_account.html.twig' %}
 
 {% block content %}
-   audio/video
+    {% for file in allFilesAudio %}
+        {% if file.type == "audio" %}
+            <!--<p>{{file.filepath}}</p>-->
+            <form class="form_delete" method="POST" action="?action=your_files">
+                <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
+                <input type="submit" value="">
+            </form>
+            <audio class="size_picture_upload" src="{{file.filepath}}" alt="{{file.filepath}}" controls></audio>
 
+            <div class="row_option_one_picture">
+                <!--<a href="{{file.filepath}}" download="{{file.filepath}}">
+                            <img class="logo_download" src="web/image/download.png" alt="download"/>
+                        </a>-->
+                <div class="rename_button">Rename</div>
+            </div>
+
+            <form class="form_rename none" method="POST" action="?action=your_files">
+                <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
+                <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
+                <input type="submit" value="Rename">
+            </form>
+
+        {% endif %}
+    {% endfor %}
+
+    {% for file in allFilesVideo %}
+        {% if file.type == "video" %}
+            <!--<p>{{file.filepath}}</p>-->
+            <form class="form_delete" method="POST" action="?action=your_files">
+                <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
+                <input type="submit" value="">
+            </form>
+            <video class="size_picture_upload" src="{{file.filepath}}" controls></video>
+
+            <div class="row_option_one_picture">
+                <a href="{{file.filepath}}" download="{{file.filepath}}">
+                    <img class="logo_download" src="web/image/download.png" alt="download"/>
+                </a>
+                <div class="rename_button">Rename</div>
+            </div>
+
+            <form class="form_rename none" method="POST" action="?action=your_files">
+                <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
+                <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
+                <input type="submit" value="Rename">
+            </form>
+
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}
