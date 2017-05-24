@@ -34,7 +34,16 @@ class FoldersManager{
     public function checkCreateFolder($folder_name, $container)
     {
         $errors = array();
-
+        $query = $this->DBManager->findOneSecure("SELECT * FROM folders WHERE foldername = :foldername AND user_id = :user_id AND container_id = :container_id", ['user_id' => $_SESSION['user_id'], 'foldername' => $folder_name, 'container_id' => $container]);
+        if(!empty($query)){
+            $errors['foldername'] = "You already got one folder with this name is this directory";
+        }
+        if($container != 0){
+            $data = $this->DBManager->findOneSecure("SELECT * FROM folders WHERE id = :id AND user_id = :user_id", ['user_id' => $_SESSION['user_id'], 'id' => $container]);
+            if(empty($data)){
+                $errors['folder_container'] = "We can't find this folder";
+            }
+        }
         return $errors;
     }
 
