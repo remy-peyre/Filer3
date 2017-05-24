@@ -109,4 +109,30 @@ class FilesController extends BaseController
         } 
     }
 
+    public function applicationAction()
+    {
+        if (!empty($_SESSION['user_id'])){
+            echo $this->renderView('application.html.twig');
+        }
+        else
+            $this->redirect('login');
+    }
+
+    public function pictureAction()
+    {
+        if (!empty($_SESSION['user_id'])){
+            echo $this->renderView('picture.html.twig');
+        }
+        else
+            $this->redirect('login');
+    }
+
+    public function audio_videoAction()
+    {
+        if (!empty($_SESSION['user_id'])){
+            echo $this->renderView('audio_video.html.twig');
+        }
+        else
+            $this->redirect('login');
+    }
 }
