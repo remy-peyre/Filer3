@@ -36,7 +36,7 @@ class FilesManager{
         return $data;
     }
 
-    public function checkUploadFile($data, $post)
+    public function checkUploadFile($data)
     {
         $errors = array();
         if(!empty($data['name'])){
@@ -63,7 +63,7 @@ class FilesManager{
         return $errors;
     }
 
-    public function uploadFile($data, $post)
+    public function uploadFile($data, $post = [])
     {
         $type = dirname(mime_content_type($data['tmp_name']));
         if(!empty($post['initial_new_name'])){
@@ -113,7 +113,8 @@ class FilesManager{
         return true;
     }
 
-    public function checkRenameFile($file_id, $new_name){
+    public function checkRenameFile($file_id, $new_name)
+    {
         $errors = array();
         if(!empty($file_id)){
             $data = $this->getFileById($file_id);
@@ -131,7 +132,38 @@ class FilesManager{
         return $errors;
     }
 
-    public function renameFIle($file_id, $new_name){
+    public function renameFIle($file_id, $new_name)
+    {
         $update = $this->DBManager->findOneSecure("UPDATE `files` SET `filename` = :newname WHERE `id` =:file_id", ['file_id' => $file_id, 'newname' => $new_name]);
+    }
+
+    public function checkReplaceFile($file_id, $data)
+    {
+        $errors = array();
+        $to_delete = $this->getFileById($file_id);
+        if(empty($to_delete)){
+            $errors['file_to_replace'] = "We can't find the file you want to replace";
+        }
+        if(!empty($data['name'])){
+            $type = dirname(mime_content_type($data['tmp_name']));
+            $extensions = array('image', 'text', 'application', 'audio', 'video');
+            if(in_array($type, $extensions) === false){
+                $errors['extensions'] = 'this extension isn\'t allowed';
+            }
+            $data = $this->getFileByFilename($data['name']);
+            if($data){
+                $errors['filename'] = "Name already used";
+            }
+        }
+        else{
+            $errors['fields'] = 'You have to select one file';
+        }
+        return $errors;
+    }
+
+    public function replaceFile($file_id, $data)
+    {
+        $this->deleteFile($file_id);
+        $this->uploadFile($data);
     }
 }

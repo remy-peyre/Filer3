@@ -41,9 +41,13 @@
                     Click on Open and after Upload<br>
                     Files .jpg / .jpeg / .png / .pdf / .txt / .mp3 / .mp4
                     <br>
-                    <input type="file" name="uploaded_file">
-                    <input type="txt" name="initial_new_name">
-                    <input type="submit" name="upload_button" value="Replace">
+                    <input type="file" name="replacement_file">
+                    <select name="select_replace">
+                        {% for file in allFiles %}
+                            <option value="{{file.id}}">{{file.filename}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" name="replace_button" value="Replace">
                 </p>
             </form>
         </div>

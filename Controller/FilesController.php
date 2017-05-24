@@ -13,9 +13,10 @@ class FilesController extends BaseController
         if (!empty($_SESSION['user_id'])){
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
+            $fileManager = FilesManager::getInstance();
+            $allFiles = $fileManager->showFiles($_SESSION['user_id']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(!empty($_POST['upload_button'])){
-                    $fileManager = FilesManager::getInstance();
                     if(empty($fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST))){
                         $fileManager->uploadFile($_FILES['uploaded_file'], $_POST);
                         $this->redirect('your_files');
@@ -23,13 +24,24 @@ class FilesController extends BaseController
                     else{
                         $errors = $fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST);
                         echo $this->renderView('upload.html.twig',
-                                    ['user' => $user, 'errors' => $errors]);
+                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles]);
+                    }
+                }
+                else if(!empty($_POST['replace_button'])){
+                    if(empty($fileManager->checkReplaceFile($_POST['select_replace'], $_FILES['replacement_file']))){
+                        $fileManager->replaceFile($_POST['select_replace'], $_FILES['replacement_file']);
+                        $this->redirect('your_files');
+                    }
+                    else{
+                        $errors = $fileManager->checkReplaceFile($_POST['select_replace'], $_FILES['replacement_file']);
+                        echo $this->renderView('upload.html.twig',
+                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles]);
                     }
                 }
             }
             else{
                 echo $this->renderView('upload.html.twig',
-                                        ['user' => $user]);
+                                        ['user' => $user, 'allFiles' => $allFiles]);
             }
         }
         else{
