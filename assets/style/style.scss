@@ -399,6 +399,7 @@ main{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        margin-top: 20px;
 
         .column_for_all_info{
             border: 1px solid #ababab;
@@ -409,6 +410,7 @@ main{
 
             p{
                 text-align: center;
+                color: #6f6a6a;
             }
             .form_delete input[type=submit] {
                 background-image: url(../image/cancel.png);
@@ -421,7 +423,20 @@ main{
                 width: 20px;
 
             }
+            .row_option_one_picture{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-around;
 
+                .rename_button{
+                    padding: 3px 7px;
+                    /*border: 1px solid black;*/
+                    border-radius: 20px;
+                    background-color: #00a651;
+                    color: white;
+                }
+            }
             .form_rename{
                 display: flex;
                 flex-direction: column;
@@ -432,8 +447,15 @@ main{
                 .none{
                     display: none;
                 }
+                input[type=mail]{
+                    padding: 2px;
+                }
                 input[type=submit]{
                     width: 50%;
+                    background-color: #3B5998;
+                    border: 0;
+                    color: white;
+                    padding: 3px;
                 }
             }
             .none{
