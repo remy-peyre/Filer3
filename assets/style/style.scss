@@ -433,6 +433,27 @@ main{
             display: none;
         }
     }
+    .size_row_folder_show{
+        width: 100%;
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .colum_for_folder{
+            display: flex;
+            flex-direction: column;
+            margin-right: 15px;
+
+            .size_folder_upload{
+                width: 150px;
+                height: 150px;
+                padding: 5px;
+            }
+        }
+    }
     .size_row_img_show{
         width: 100%;
         text-align: center;

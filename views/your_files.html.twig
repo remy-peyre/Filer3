@@ -7,13 +7,18 @@
             {{ error }}<br>
         {% endfor %}
     </div>
-        <div>
+    <div class="size_row_folder_show">
         {% for folder in allFolders %}
+
+            <div class="colum_for_folder">
+                <img class="size_folder_upload" src="web/image/folder.png" alt="{{file.filepath}}">
+                {{ folder.foldername }}
+            </div>
             <form method="POST" action="?action=your_files">
                 <input type="hidden" name="new_current_folder" value="{{folder.id}}">
                 <input type="submit" value="go to {{folder.foldername}}">
             </form>
-            {{folder.foldername}}
+
         {% endfor %}
     </div>
     <div class="size_row_img_show">
