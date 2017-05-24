@@ -118,4 +118,21 @@ class FilesController extends BaseController
             $this->redirect('login');
     }
 
+    public function pictureAction()
+    {
+        if (!empty($_SESSION['user_id'])){
+            echo $this->renderView('picture.html.twig');
+        }
+        else
+            $this->redirect('login');
+    }
+
+    public function audio_videoAction()
+    {
+        if (!empty($_SESSION['user_id'])){
+            echo $this->renderView('audio_video.html.twig');
+        }
+        else
+            $this->redirect('login');
+    }
 }
