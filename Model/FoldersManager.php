@@ -73,4 +73,15 @@ class FoldersManager{
        mkdir($new_path);
     }
 
+    public function checkSwitchCurrentFolder($new_folder_id, $user_id)
+    {
+        $errors = array();
+        return $errors;
+    }
+
+    public function switchCurrentFolder($new_folder_id)
+    {
+        $_SESSION['current_folder'] = $new_folder_id;
+    }
+
 }

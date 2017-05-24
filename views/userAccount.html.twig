@@ -69,13 +69,19 @@
                 <div class="first_row_option">
                     <div class="button_option">
                         <a href="?action=upload">
-                            Upload
+                            Upload / Move
                         </a>
                     </div>
                     <div class="button_option">
                         <a href="?action=folder">
                             Folder
                         </a>
+                    </div>
+                    <div class="button_option">
+                        <form action="?action=switchCurrentFolder" method="POST">
+                            <input type="hidden" name="new_current_folder" value="0">
+                            <input type="submit" value="Retourner au dossier courant">
+                        </form>
                     </div>
                 </div>
 
