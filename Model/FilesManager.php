@@ -160,38 +160,37 @@ class FilesManager{
         $this->uploadFile($data);
     }
 
-    public function showFiles($user_id)
+    public function showFiles($user_id, $current_folder)
     {
-        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id ",
-            ['user_id' => $user_id]);
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND container_id = :current_folder",['user_id' => $user_id, 'current_folder' =>$current_folder]);
         return $data;
     }
 
-    public function showApplication($user_id)
+    public function showApplication($user_id, $current_folder)
     {
-        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
-                                                ['user_id' => $user_id, 'type' => "application"]);
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type AND container_id = :current_folder",
+                                                ['user_id' => $user_id, 'type' => "application", 'current_folder' =>$current_folder]);
         return $data;       
     }
 
-    public function showPicture($user_id)
+    public function showPicture($user_id, $current_folder)
     {
-        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
-                                                ['user_id' => $user_id, 'type' => "image"]);
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type AND container_id = :current_folder",
+                                                ['user_id' => $user_id, 'type' => "image", 'current_folder' =>$current_folder]);
         return $data;             
     }
 
-    public function showAudio($user_id)
+    public function showAudio($user_id, $current_folder)
     {
-        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
-                                                ['user_id' => $user_id, 'type' => "audio"]);
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type AND container_id = :current_folder",
+                                                ['user_id' => $user_id, 'type' => "audio", 'current_folder' =>$current_folder]);
         return $data;       
     }
 
-    public function showVideo($user_id)
+    public function showVideo($user_id, $current_folder)
     {
-        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
-                                                ['user_id' => $user_id, 'type' => "video"]);
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type AND container_id = :current_folder",
+                                                ['user_id' => $user_id, 'type' => "video", 'current_folder' =>$current_folder]);
         return $data;       
     }
 }

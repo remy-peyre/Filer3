@@ -14,7 +14,7 @@ class DefaultController extends BaseController
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             $fileManager = FilesManager::getInstance();
-            $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+            $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
             echo $this->renderView('user_account.html.twig',
                                    ['user' => $user, 'allFiles' => $allFiles]);
         }
