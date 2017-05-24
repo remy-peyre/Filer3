@@ -15,7 +15,7 @@ class FilesController extends BaseController
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             $fileManager = FilesManager::getInstance();
-            $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+            $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(!empty($_POST['upload_button'])){
                     if(empty($fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST))){
@@ -62,14 +62,14 @@ class FilesController extends BaseController
                     if(empty($fileManager->checkDeleteFile($_POST['id_file_to_delete']))){
                         $fileManager->deleteFile($_POST['id_file_to_delete']);
                         $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-                        $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                        $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
                         echo $this->renderView('your_files.html.twig',
                                     ['user' => $user, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
                     }
                     else{
                         $errors = $fileManager->checkDeleteFile($_POST['id_file_to_delete']);
                         $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-                        $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                        $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
                         echo $this->renderView('your_files.html.twig',
                                     ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);                    
                     }
@@ -78,28 +78,28 @@ class FilesController extends BaseController
                     if(empty($fileManager->checkRenameFile($_POST['id_file_to_rename'], $_POST['new_name']))){
                         $fileManager->renameFile($_POST['id_file_to_rename'], $_POST['new_name']);
                         $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-                        $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                        $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
                         echo $this->renderView('your_files.html.twig',
                                     ['user' => $user, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
                     }
                     else{
                         $errors = $fileManager->checkRenameFile($_POST['id_file_to_rename'], $_POST['new_name']);
                         $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-                        $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                        $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
                         echo $this->renderView('your_files.html.twig',
                                     ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);                    
                     }
                 }
                 else{
                     $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-                    $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                    $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
                     echo $this->renderView('your_files.html.twig',
                                 ['user' => $user, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
                 }
             }
             else{
                 $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-                $allFiles = $fileManager->showFiles($_SESSION['user_id']);
+                $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
                 echo $this->renderView('your_files.html.twig',
                             ['user' => $user, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
             }
@@ -117,7 +117,7 @@ class FilesController extends BaseController
             $folderManager = FoldersManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-            $allFilesApplication = $fileManager->showApplication($_SESSION['user_id']);
+            $allFilesApplication = $fileManager->showApplication($_SESSION['user_id'], $_SESSION['current_folder']);
             echo $this->renderView('application.html.twig',
                 ['user' => $user, 'allFilesApplication' => $allFilesApplication, 'allFolders' => $allFolders]);
         }
@@ -133,7 +133,7 @@ class FilesController extends BaseController
             $folderManager = FoldersManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-            $allFilesPicture = $fileManager->showPicture($_SESSION['user_id']);
+            $allFilesPicture = $fileManager->showPicture($_SESSION['user_id'], $_SESSION['current_folder']);
             echo $this->renderView('picture.html.twig',
                 ['user' => $user, 'allFilesPicture' => $allFilesPicture, 'allFolders' => $allFolders]);
         }
@@ -149,8 +149,8 @@ class FilesController extends BaseController
             $folderManager = FoldersManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
             $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-            $allFilesAudio = $fileManager->showAudio($_SESSION['user_id']);
-            $allFilesVideo = $fileManager->showVideo($_SESSION['user_id']);
+            $allFilesAudio = $fileManager->showAudio($_SESSION['user_id'], $_SESSION['current_folder']);
+            $allFilesVideo = $fileManager->showVideo($_SESSION['user_id'], $_SESSION['current_folder']);
             echo $this->renderView('audio_video.html.twig',
                 ['user' => $user, 'allFilesAudio' => $allFilesAudio, 'allFilesVideo' => $allFilesVideo, 'allFolders' => $allFolders]);
         }
