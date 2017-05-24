@@ -48,13 +48,21 @@ main{
 
 }
 .login{
-    background-image: url(../image/background.jpeg);
+    background-color: #F3F3F3;
+    background-image: url(../image/home.png);
     background-attachment: local;
     background-size: 100% 100%;
-    height: 500px;
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 700px;
+    /*background-image: url(../image/background.jpeg);
+    background-attachment: local;
+    background-size: 100% 100%;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;*/
 
     .errors_style{
         width: 100%;
@@ -64,20 +72,21 @@ main{
     }
 
     h2{
-        color: white;
+        color: #3B5998;
         font-size: 35px;
         margin-bottom: 15px;
         width: 100%;
         text-align: center;
-        margin-top: 40px;
+        margin-top: 70px;
     }
     .container_login{
         display: inline-flex;
         width: 100%;
+        margin-top: 50px;
+
         .description_login{
             width: 55%;
             text-align: center;
-            color: #bfbfbf;
             margin-top: 45px;
 
             .color_important_p{
@@ -90,6 +99,7 @@ main{
             background: #ebebeb;
             padding: 12px;
             width: 100%;
+            border: 1px solid;
         }
 
         .login_part {
@@ -126,6 +136,7 @@ main{
             border-color: transparent;
             color: #fff;
             cursor: pointer;
+            margin-top: 16px;
         }
         .login_part input[type="submit"]:hover {
             background: #17c;
