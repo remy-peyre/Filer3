@@ -210,7 +210,7 @@ header nav .right_part_menu .color_link_menu_right a {
 .header_user_account .width_title_menu {
   width: 20%;
   text-align: center;
-  border-right: 1px solid black;
+  border-right: 1px solid #ababab;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -222,7 +222,7 @@ header nav .right_part_menu .color_link_menu_right a {
 .header_user_account .width_first_menu {
   width: 68%;
   display: inline-flex;
-  border-right: 1px solid black;
+  border-right: 1px solid #ababab;
   height: 60px;
   align-items: center;
 }
@@ -262,6 +262,7 @@ header nav .right_part_menu .color_link_menu_right a {
   background-color: #3B5998;
   height: 600px;
   color: white;
+  border-top: 1px solid #ababab;
 }
 .user_account .column_left .user_account_right_part {
   width: 100%;
@@ -355,6 +356,15 @@ header nav .right_part_menu .color_link_menu_right a {
   height: 150px;
   padding: 5px;
 }
+.your_files .row_option_one_picture {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.your_files .row_option_one_picture .logo_download {
+  width: 25px;
+}
 .your_files .form_delete {
   text-align: right;
   margin-top: -12px;
@@ -369,6 +379,7 @@ header nav .right_part_menu .color_link_menu_right a {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 .your_files .size_row_img_show .column_for_all_info {
   border: 1px solid #ababab;
@@ -379,8 +390,9 @@ header nav .right_part_menu .color_link_menu_right a {
 }
 .your_files .size_row_img_show .column_for_all_info p {
   text-align: center;
+  color: #6f6a6a;
 }
-.your_files .size_row_img_show .column_for_all_info input[type=submit] {
+.your_files .size_row_img_show .column_for_all_info .form_delete input[type=submit] {
   background-image: url(../image/cancel.png);
   background-size: 100% 100%;
   border: 0;
@@ -389,6 +401,42 @@ header nav .right_part_menu .color_link_menu_right a {
   padding: 5px;
   height: 20px;
   width: 20px;
+}
+.your_files .size_row_img_show .column_for_all_info .row_option_one_picture {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.your_files .size_row_img_show .column_for_all_info .row_option_one_picture .rename_button {
+  padding: 3px 7px;
+  /*border: 1px solid black;*/
+  border-radius: 20px;
+  background-color: #00a651;
+  color: white;
+}
+.your_files .size_row_img_show .column_for_all_info .form_rename {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.your_files .size_row_img_show .column_for_all_info .form_rename .none {
+  display: none;
+}
+.your_files .size_row_img_show .column_for_all_info .form_rename input[type=mail] {
+  padding: 2px;
+}
+.your_files .size_row_img_show .column_for_all_info .form_rename input[type=submit] {
+  width: 50%;
+  background-color: #3B5998;
+  border: 0;
+  color: white;
+  padding: 3px;
+}
+.your_files .size_row_img_show .column_for_all_info .none {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
