@@ -271,6 +271,9 @@ header nav .right_part_menu .color_link_menu_right a {
 }
 .user_account .column_left .user_account_right_part .containt_left_view {
   margin-top: 10px;
+  margin-top: 10px;
+  border-bottom: 1px solid #ababab;
+  height: 60px;
 }
 .user_account .column_left .user_account_right_part .containt_left_view a {
   color: white;
