@@ -112,7 +112,14 @@ class FilesController extends BaseController
     public function applicationAction()
     {
         if (!empty($_SESSION['user_id'])){
-            echo $this->renderView('application.html.twig');
+            $manager = UserManager::getInstance();
+            $fileManager = FilesManager::getInstance();
+            $folderManager = FoldersManager::getInstance();
+            $user = $manager->getUserById($_SESSION['user_id']);
+            $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
+            $allFilesApplication = $fileManager->showApplication($_SESSION['user_id']);
+            echo $this->renderView('application.html.twig',
+                                    ['user' => $user, 'allFilesApplication' => $allFilesApplication, 'allFolders' => $allFolders]);
         }
         else
             $this->redirect('login');
@@ -121,7 +128,14 @@ class FilesController extends BaseController
     public function pictureAction()
     {
         if (!empty($_SESSION['user_id'])){
-            echo $this->renderView('picture.html.twig');
+            $manager = UserManager::getInstance();
+            $fileManager = FilesManager::getInstance();
+            $folderManager = FoldersManager::getInstance();
+            $user = $manager->getUserById($_SESSION['user_id']);
+            $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
+            $allFilesPicture = $fileManager->showPicture($_SESSION['user_id']);
+            echo $this->renderView('picture.html.twig',
+                                    ['user' => $user, 'allFilesPicture' => $allFilesPicture, 'allFolders' => $allFolders]);
         }
         else
             $this->redirect('login');
@@ -130,7 +144,15 @@ class FilesController extends BaseController
     public function audio_videoAction()
     {
         if (!empty($_SESSION['user_id'])){
-            echo $this->renderView('audio_video.html.twig');
+            $manager = UserManager::getInstance();
+            $fileManager = FilesManager::getInstance();
+            $folderManager = FoldersManager::getInstance();
+            $user = $manager->getUserById($_SESSION['user_id']);
+            $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
+            $allFilesAudio = $fileManager->showAudio($_SESSION['user_id']);
+            $allFilesVideo = $fileManager->showVideo($_SESSION['user_id']);
+            echo $this->renderView('audio_video.html.twig',
+                                    ['user' => $user, 'allFilesAudio' => $allFilesAudio, 'allFilesVideo' => $allFilesVideo, 'allFolders' => $allFolders]);
         }
         else
             $this->redirect('login');

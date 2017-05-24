@@ -166,4 +166,32 @@ class FilesManager{
             ['user_id' => $user_id]);
         return $data;
     }
+
+    public function showApplication($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
+                                                ['user_id' => $user_id, 'type' => "application"]);
+        return $data;       
+    }
+
+    public function showPictures($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
+                                                ['user_id' => $user_id, 'type' => "image"]);
+        return $data;             
+    }
+
+    public function showAudio($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
+                                                ['user_id' => $user_id, 'type' => "audio"]);
+        return $data;       
+    }
+
+    public function showVideo($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type",
+                                                ['user_id' => $user_id, 'type' => "video"]);
+        return $data;       
+    }
 }
