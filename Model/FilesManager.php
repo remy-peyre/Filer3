@@ -82,13 +82,6 @@ class FilesManager{
         move_uploaded_file($data["tmp_name"], $new_path);
     }
 
-    public function showFiles($user_id)
-    {
-        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id ",
-            ['user_id' => $user_id]);
-        return $data;
-    }
-
     public function checkDeleteFile($file_id)
     {
         $errors = array();
@@ -165,5 +158,12 @@ class FilesManager{
     {
         $this->deleteFile($file_id);
         $this->uploadFile($data);
+    }
+
+    public function showFiles($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id ",
+            ['user_id' => $user_id]);
+        return $data;
     }
 }
