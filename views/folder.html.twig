@@ -5,33 +5,40 @@
         {% for error in errors %}
             {{ error }}<br>
         {% endfor %}
+
         <form class="form_create_folder" method="POST" action="?action=folder">
-            <input type="text" name="folder_name" placeholder="Name folder">
-            <select name="wich_folder">
-                <option value="0">Dossier principal</option>
-                {% for folder in allFolders %}
-                    <option value="{{folder.id}}">{{folder.foldername}}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="create folder">
+            <p class="center_option">New folder :</p>
+            <p>Create a folder<br>
+                <input type="text" name="folder_name" placeholder="Name folder">
+                <select name="wich_folder">
+                    <option value="0">Dossier principal</option>
+                    {% for folder in allFolders %}
+                        <option value="{{folder.id}}">{{folder.foldername}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Create folder">
+            </p>
         </form>
 
 
         <form class="form_create_folder" method="POST" action="?action=folder">
-            <input type="text" name="folder_name" placeholder="Name folder">
-            <select name="wich_folder">
-                <option value="0">Dossier principal</option>
-                {% for folder in allFolders %}
-                    <option value="{{folder.id}}">{{folder.foldername}}</option>
-                {% endfor %}
-            </select>
-            <select name="wich_folder">
-                <option value="0">Dossier principal</option>
-                {% for folder in allFolders %}
-                    <option value="{{folder.id}}">{{folder.foldername}}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="create folder">
+
+            <p class="center_option">Move a folder in a folder:</p>
+            <p>Select a folder, where you want him to go<br>
+                <select name="wich_folder">
+                    <option value="0">Dossier principal</option>
+                    {% for folder in allFolders %}
+                        <option value="{{folder.id}}">{{folder.foldername}}</option>
+                    {% endfor %}
+                </select>
+                <select name="wich_folder">
+                    <option value="0">Dossier principal</option>
+                    {% for folder in allFolders %}
+                        <option value="{{folder.id}}">{{folder.foldername}}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Move folder">
+            </p>
         </form>
 
     </section>

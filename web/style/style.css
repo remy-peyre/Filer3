@@ -303,7 +303,7 @@ header nav .right_part_menu .color_link_menu_right a {
 .user_account .area_right .first_row_option .button_option {
   padding: 5px 6px;
   border-radius: 5px;
-  width: 70px;
+  width: 115px;
   background-color: #00a651;
   height: 15px;
   margin-top: auto;
@@ -316,6 +316,19 @@ header nav .right_part_menu .color_link_menu_right a {
 }
 .user_account .area_right .first_row_option .button_option a {
   color: white;
+}
+.user_account .area_right .first_row_option .form_comeback_current_folder {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 15px;
+}
+.user_account .area_right .first_row_option .form_comeback_current_folder input[type=submit] {
+  background-color: #00a651;
+  padding: 5px;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  font-size: 14px;
 }
 .user_account .area_right .column_right_containte {
   width: 100%;
@@ -519,6 +532,9 @@ header nav .right_part_menu .color_link_menu_right a {
   margin-top: 15px;
   padding: 10px;
   background-color: #EEEEEE;
+}
+.folder .form_create_folder p {
+  text-align: center;
 }
 .folder .form_create_folder input[type=text] {
   width: 50%;

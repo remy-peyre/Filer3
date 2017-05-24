@@ -55,7 +55,7 @@
                                 </a>
                             </div>
                             <div class="containt_left_view">
-                                <a href="?action=audio_video">
+                                <a href="?action=audioVideo">
                                     AUDIO / VIDEO
                                 </a>
                             </div>
@@ -77,12 +77,10 @@
                             Folder
                         </a>
                     </div>
-                    <div class="button_option">
-                        <form action="?action=switchCurrentFolder" method="POST">
-                            <input type="hidden" name="new_current_folder" value="0">
-                            <input type="submit" value="Retourner au dossier courant">
-                        </form>
-                    </div>
+                    <form class="form_comeback_current_folder" action="?action=switchCurrentFolder" method="POST">
+                        <input type="hidden" name="new_current_folder" value="0">
+                        <input type="submit" value="Back to current folder">
+                    </form>
                 </div>
 
                 <div class="column_right_containte">

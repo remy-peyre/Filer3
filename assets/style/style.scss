@@ -319,7 +319,7 @@ main{
             .button_option{
                 padding: 5px 6px;
                 border-radius: 5px;
-                width: 70px;
+                width: 115px;
                 background-color: #00a651;
                 height: 15px;
                 margin-top: auto;
@@ -331,6 +331,20 @@ main{
                 align-items: center;
                 a{
                     color: white;
+                }
+            }
+            .form_comeback_current_folder{
+                margin-top: auto;
+                margin-bottom: auto;
+                margin-left: 15px;
+
+                input[type=submit]{
+                    background-color: #00a651;
+                    padding: 5px;
+                    border-radius: 5px;
+                    border: 0;
+                    color: white;
+                    font-size: 14px;
                 }
             }
         }
@@ -554,6 +568,9 @@ main{
         padding: 10px;
         background-color: #EEEEEE;
 
+        p{
+            text-align: center;
+        }
         input[type=text]{
             width: 50%;
         }
