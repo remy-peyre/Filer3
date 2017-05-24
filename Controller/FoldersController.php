@@ -26,11 +26,14 @@ class FoldersController extends BaseController
                     }                    
                 }
                 else{
-                    echo $this->renderView('folder.html.twig', ['allFolders' => $allFolders]);
+                    echo $this->renderView('folder.html.twig',
+                                ['user' => $user, 'allFolders' => $allFolders]);
+
                 }
             }
             else{
-                echo $this->renderView('folder.html.twig', ['allFolders' => $allFolders]);
+                echo $this->renderView('folder.html.twig',
+                            ['user' => $user, 'allFolders' => $allFolders]);
             }
         }
         else{
