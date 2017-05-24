@@ -75,6 +75,7 @@ class FilesManager{
         $file['filepath'] =  'uploads/'. $_SESSION['user_id'] . '/' . $file['filename'];
         $file['user_id'] = $_SESSION['user_id'];
         $file['type'] = $type;
+        $file['container_id'] = 0;
         $this->DBManager->insert('files', $file);
         $file = $this->DBManager->findOneSecure("SELECT * FROM files where filename = :filename", ['filename' => $file['filename']]);
         $new_path = 'uploads/'. $_SESSION['user_id'] . '/' . $file['id'] .  strrchr(basename($data['name']), '.');
