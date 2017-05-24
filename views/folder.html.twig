@@ -1,0 +1,16 @@
+{% extends 'user_account.html.twig' %}
+
+{% block content %}
+    <form method="POST" action="?action=folder">
+        <input type="text" name="folder_name">
+        <select name="wich_folder">
+            <option value="">Dossier principal</option>
+            {% for folder in allFolders %}
+                <option value="{{folder.id}}">{{folder.foldername}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="create folder">
+    </form>
+{% endblock %}
+
+

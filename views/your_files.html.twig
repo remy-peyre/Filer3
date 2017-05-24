@@ -7,6 +7,11 @@
             {{ error }}<br>
         {% endfor %}
     </div>
+        <div>
+        {% for folder in allFolders %}
+            {{ folder.foldername }}<br>
+        {% endfor %}
+    </div>
     <div class="size_row_img_show">
             {% for file in allFiles %}
                 <div class="column_for_all_info">
