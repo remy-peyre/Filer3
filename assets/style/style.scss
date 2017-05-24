@@ -218,7 +218,7 @@ main{
     .width_title_menu{
         width: 20%;
         text-align: center;
-        border-right: 1px solid black;
+        border-right: 1px solid #ababab;
         height: 60px;
         display: flex;
         justify-content: center;
@@ -231,7 +231,7 @@ main{
     .width_first_menu{
         width: 68%;
         display: inline-flex;
-        border-right: 1px solid black;
+        border-right: 1px solid #ababab;
         height: 60px;
         align-items: center;
 
@@ -273,6 +273,7 @@ main{
         background-color: #3B5998;
         height: 600px;
         color: white;
+        border-top: 1px solid #ababab;
 
         .user_account_right_part{
             width: 100%;
@@ -374,6 +375,16 @@ main{
         height: 150px;
         padding: 5px;
     }
+    .row_option_one_picture{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .logo_download{
+            width: 25px;
+        }
+    }
     .form_delete{
         text-align: right;
         margin-top: -12px;
@@ -399,7 +410,7 @@ main{
             p{
                 text-align: center;
             }
-            input[type=submit] {
+            .form_delete input[type=submit] {
                 background-image: url(../image/cancel.png);
                 background-size: 100% 100%;
                 border: 0;
@@ -409,6 +420,24 @@ main{
                 height: 20px;
                 width: 20px;
 
+            }
+
+            .form_rename{
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+
+                .none{
+                    display: none;
+                }
+                input[type=submit]{
+                    width: 50%;
+                }
+            }
+            .none{
+                display: none;
             }
         }
     }
