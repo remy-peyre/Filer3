@@ -26,10 +26,8 @@
     <div class="size_row_img_show">
         {% for file in allFiles %}
             <div class="column_for_all_info">
-                <!--<p> {{file.type}}</p>-->
 
                 {% if file.type == "image" %}
-                    <!--<p>{{file.filepath}}</p>-->
                     <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
@@ -52,7 +50,6 @@
                 {% endif %}
 
                 {% if file.type == "application" %}
-                    <!--<p>{{file.filepath}}</p>-->
                     <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
@@ -75,7 +72,6 @@
                 {% endif %}
 
                 {% if file.type == "audio" %}
-                    <!--<p>{{file.filepath}}</p>-->
                     <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
@@ -83,9 +79,6 @@
                     <audio class="size_picture_upload" src="{{file.filepath}}" alt="{{file.filepath}}" controls></audio>
 
                     <div class="row_option_one_picture">
-                        <!--<a href="{{file.filepath}}" download="{{file.filepath}}">
-                            <img class="logo_download" src="web/image/download.png" alt="download"/>
-                        </a>-->
                         <div class="rename_button">Rename</div>
                     </div>
 
@@ -106,9 +99,6 @@
                     <video class="size_picture_upload" src="{{file.filepath}}" controls></video>
 
                     <div class="row_option_one_picture">
-                        <!--<a href="{{file.filepath}}" download="{{file.filepath}}">
-                            <img class="logo_download" src="web/image/download.png" alt="download"/>
-                        </a>-->
                         <div class="rename_button">Rename</div>
                     </div>
 

@@ -348,6 +348,7 @@ header nav .right_part_menu .color_link_menu_right a {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  width: 100%;
 }
 .upload .size_left_part_upload {
   width: 100%;
