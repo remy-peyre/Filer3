@@ -69,6 +69,10 @@ class UserManager
         if( $data['password'] != $data['verif_password']){
             $errors['password'] = "Password doesn't match";
         }
+        if (!empty ($errors)){
+            $text = " Someone try to register ! ";
+            $this->watchActionLog("security.log", $text);
+        }
         return $errors;
     }
 
@@ -116,6 +120,10 @@ class UserManager
             {
                 $errors['password'] = "Password doesn't match with this account";
             }
+        }
+        if (!empty ($errors)){
+            $text = " Someone try to login ! ";
+            $this->watchActionLog("security.log", $text);
         }
         return $errors;
     }

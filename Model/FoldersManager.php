@@ -56,6 +56,10 @@ class FoldersManager{
                 $errors['folder_container'] = "We can't find this folder";
             }
         }
+        if (!empty ($errors)){
+            $text = $_SESSION['user_id'] . " can't create a folder ";
+            $this->UserManager->watchActionLog("security.log", $text);
+        }
         return $errors;
     }
 
@@ -102,6 +106,10 @@ class FoldersManager{
                 $errors['name_folder'] = "You already got one folder with this name in the same folder ! ";
             }
         }
+        if (!empty ($errors)){
+            $text = $_SESSION['user_id'] . " can't rename a folder ";
+            $this->UserManager->watchActionLog("security.log", $text);
+        }
         return $errors;
     }
 
@@ -109,6 +117,7 @@ class FoldersManager{
     {
         $update = $this->DBManager->findOneSecure("UPDATE `folders` SET `foldername` = :newname WHERE `id` =:folder_id", ['folder_id' => $folder_id, 'newname' => $newname]);
         $_SESSION['current_folder'] = $folder_id;
+
         $text = " Username " . $_SESSION['user_id'] . " has rename a folder with success ! ";
         $this->UserManager->watchActionLog("access.log", $text);
     }
@@ -119,6 +128,10 @@ class FoldersManager{
         $data = $this->DBManager->findOneSecure("SELECT * FROM `folders` WHERE user_id = :user_id AND id = :folder_id", ['user_id' => $_SESSION['user_id'], 'folder_id' => $folder_id]);
         if(empty($data)){
             $errors['id_folder'] = "We can't find that folder !";
+        }
+        if (!empty ($errors)){
+            $text = $_SESSION['user_id'] . " can't delete a folder ";
+            $this->UserManager->watchActionLog("security.log", $text);
         }
         return $errors;
     }
@@ -155,6 +168,10 @@ class FoldersManager{
             if(empty($data)){
                 $errors['id_folder'] = "We can't find that folder !";
             }
+        }
+        if (!empty ($errors)){
+            $text = $_SESSION['user_id'] . " can't switch a folder ";
+            $this->UserManager->watchActionLog("security.log", $text);
         }
         return $errors;
     }

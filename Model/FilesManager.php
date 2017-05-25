@@ -68,6 +68,10 @@ class FilesManager{
         else{
             $errors['fields'] = 'You have to select one file';
         }
+        if (!empty ($errors)){
+            $text = $file['filename'] . " can't be upload with success ! ";
+            $this->UserManager->watchActionLog("security.log", $text);
+        }
         return $errors;
     }
 
@@ -118,6 +122,10 @@ class FilesManager{
         else{
             $errors['missing_id'] = "Can't find id please try again";
         }
+        if (!empty ($errors)){
+            $text = $file_id . " can't delete this file ";
+            $this->UserManager->watchActionLog("security.log", $text);
+        }
         return $errors;
     }
 
@@ -149,6 +157,10 @@ class FilesManager{
         }
         else{
             $errors['missing_id'] = "Can't find id please try again";
+        }
+        if (!empty ($errors)){
+            $text = $file_id . " can't rename this file ";
+            $this->UserManager->watchActionLog("security.log", $text);
         }
         return $errors;
     }
@@ -182,6 +194,10 @@ class FilesManager{
         else{
             $errors['fields'] = 'You have to select one file';
         }
+        if (!empty ($errors)){
+            $text = $file_id . " can't replace this file ";
+            $this->UserManager->watchActionLog("security.log", $text);
+        }
         return $errors;
     }
 
@@ -210,6 +226,10 @@ class FilesManager{
                 $errors['name'] = "You already got a file with this name in that folder !";
             }
         }
+        if (!empty ($errors)){
+        $text = $_SESSION['user_id'] . " can't move this file ";
+        $this->UserManager->watchActionLog("security.log", $text);
+    }
         return $errors;
     }
 
