@@ -41,6 +41,39 @@
             </p>
         </form>
 
+        <div class="row_show_folder_in_folder">
+            {% for folder in allFolders %}
+                <div class="colum_show_folder_in_folder">
+
+                    <form class="form_folder_delete" method="POST" action="?action=yourFiles">
+                        <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
+                        <input type="submit" value="">
+                    </form>
+
+                    <img class="size_folder_upload" src="web/image/folder.png" alt="{{file.filepath}}">
+
+                    <div class="row_option_one_picture">
+                        <!--<a href="{{file.filepath}}" download="{{file.filepath}}">
+                            <img class="logo_download" src="web/image/download.png" alt="download"/>
+                        </a>-->
+                        <div class="rename_folder_button">Rename</div>
+                    </div>
+                    <form class="form_rename_folder none" method="POST" action="?action=yourFiles">
+                        <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
+                        <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
+                        <input type="submit" value="Rename">
+                    </form>
+
+                    {{ folder.foldername }}
+
+                    <!--<form class="go_in_folder" method="POST" action="?action=switchCurrentFolder">
+                        <input type="hidden" name="new_current_folder" value="{{folder.id}}">
+                        <input type="submit" value="go to {{folder.foldername}}">
+                    </form>-->
+
+                </div>
+            {% endfor %}
+        </div>
     </section>
 {% endblock %}
 

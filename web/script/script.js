@@ -1,5 +1,4 @@
 window.onload = function () {
-    console.log('coucou');
     var renameButton = document.getElementsByClassName("rename_button");
 
     for (var i = 0; i< renameButton.length; i++ ){
