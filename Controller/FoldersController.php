@@ -38,6 +38,17 @@ class FoldersController extends BaseController
                                     ['user' => $user, 'errors' => $errors, 'allFolders' => $allFolders]);
                     }                       
                 }
+                else if(!empty($_POST['id_folder_to_delete'])){
+                    if(empty($folderManager->checkDeleteFolder($_POST['id_folder_to_delete']))){
+                        $folderManager->deleteFolder($_POST['id_folder_to_delete']);
+                        $this->redirect('yourFiles');
+                    }
+                    else{
+                        $errors = $folderManager->checkDeleteFolder($_POST['id_folder_to_delete']);
+                        echo $this->renderView('folder.html.twig',
+                                    ['user' => $user, 'errors' => $errors, 'allFolders' => $allFolders]);
+                    }                       
+                }
                 else{
                     echo $this->renderView('folder.html.twig',
                                 ['user' => $user, 'allFolders' => $allFolders]);

@@ -96,6 +96,35 @@ class FoldersManager{
         $update = $this->DBManager->findOneSecure("UPDATE `folders` SET `foldername` = :newname WHERE `id` =:folder_id", ['folder_id' => $folder_id, 'newname' => $newname]);
     }
 
+    public function checkDeleteFolder($folder_id)
+    {
+        $errors = array();
+        return $errors;
+    }
+
+    public function deleteFolder($folder_id)
+    {
+        $children_folders = $this->DBManager->findAllSecure("SELECT * FROM `folders` WHERE user_id = :user_id AND container_id = :container_id", ['container_id' => $folder_id, 'user_id' => $_SESSION['user_id']]);
+        $children_files = $this->DBManager->findAllSecure("SELECT * FROM `files` WHERE user_id = :user_id AND container_id = :container_id", ['container_id' => $folder_id, 'user_id' => $_SESSION['user_id']]);
+        if(!empty($children_files)){
+            for( $j = 0; $j < count($children_files); $j++){
+                $delete['file_id'] = $children_files[$j]['id'];
+                $data = $this->DBManager->findOneSecure("SELECT `filepath` FROM `files` WHERE `id` = :file_id", $delete);
+                unlink($data['filepath']);
+                $data = $this->DBManager->findOneSecure("DELETE  FROM files WHERE  `id` = :file_id", $delete);
+            }
+        }
+        if(!empty($children_folders)){
+            for( $i = 0; $i < count($children_folders); $i++){
+                $this->deleteFolder($children_folders[$i]['id']);
+            }          
+        }
+        $delete['folder_id'] = $folder_id;
+        $data = $this->DBManager->findOneSecure("SELECT `folderpath` FROM `folders` WHERE `id` = :folder_id", $delete);
+        rmdir($data['folderpath']);
+        $data = $this->DBManager->findOneSecure("DELETE  FROM folders WHERE  `id` = :folder_id", $delete);  
+    }
+
     public function checkSwitchCurrentFolder($new_folder_id, $user_id)
     {
         $errors = array();

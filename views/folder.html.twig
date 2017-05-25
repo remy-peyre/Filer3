@@ -45,12 +45,12 @@
             {% for folder in allFolders %}
                 <div class="colum_show_folder_in_folder">
 
-                    <form class="form_folder_delete" method="POST" action="?action=yourFiles">
-                        <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
+                    <form class="form_folder_delete" method="POST" action="?action=folder">
+                        <input class="none" type="text" name="id_folder_to_delete" value="{{folder.id}}">
                         <input type="submit" value="">
                     </form>
 
-                    <img class="size_folder_upload" src="web/image/folder.png" alt="{{file.filepath}}">
+                    <img class="size_folder_upload" src="web/image/folder.png" alt="folder_img">
 
                     <div class="row_option_one_picture">
                         <!--<a href="{{file.filepath}}" download="{{file.filepath}}">
