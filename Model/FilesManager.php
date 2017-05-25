@@ -207,7 +207,7 @@ class FilesManager{
             $errors['already_here'] = "This file is Already in that folder !";
         }
         else{
-            $checkName = $this->findOneSecure("SELECT * FROM `files` WHERE user_id = :user_id AND filename = :filename", ['user_id' => $_SESSION['user_id'], 'filename' => $data['filename']]);
+            $checkName = $this->DBManager->findOneSecure("SELECT * FROM `files` WHERE user_id = :user_id AND filename = :filename AND container_id => :container_id", ['user_id' => $_SESSION['user_id'], 'filename' => $data['filename'], 'container_id' => $folder_direction]);
             if(!empty($checkName)){
                 $errors['name'] = "You already got a file with this name in that folder !";
             }
