@@ -11,7 +11,13 @@
 !/cache/twig/.gitkeep
 /uploads/*
 !/uploads/.gitkeep
+<<<<<<< HEAD
+/logs/*
+/logs/.gitkeep
+/node_modules
+=======
 /logs
 /node_modules
 /logs/*
 /logs/.gitkeep
+>>>>>>> 1c95b078a5a4ed8a6df4674b57b24131a9dd2b5e

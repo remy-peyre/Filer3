@@ -96,6 +96,7 @@ class UserManager
         $this->DBManager->insert('users', $user);
         $user = $this->getUserByUsername($user['username']);
         mkdir("uploads/". $user['id']);
+
         $text = $user['username'] . " just registered ! ";
         $this->watchActionLog("access.log", $text);
     }
@@ -126,6 +127,10 @@ class UserManager
             return false;
         $_SESSION['user_id'] = $data['id'];
         $_SESSION['current_folder'] = 0;
+
+        $text = $username . " just login ! ";
+        $this->watchActionLog("access.log", $text);
+
         return true;
     }
 
@@ -137,7 +142,7 @@ class UserManager
 
     public function watchActionLog($file, $text){
         $date = $this->giveMeDate();
-        $line = $date . " || => " . $text . '\n';
+        $line = $date . " || => " . $text . "\n";
         $file_log = fopen('logs/' . $file, 'a');
         fwrite($file_log, $line);
         fclose($file_log);

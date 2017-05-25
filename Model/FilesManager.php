@@ -100,6 +100,10 @@ class FilesManager{
         }
         $update = $this->DBManager->findOneSecure("UPDATE `files` SET `filepath` = :newpath WHERE `id` =:file_id", ['file_id' => $file['id'], 'newpath' => $new_path]);
         move_uploaded_file($data["tmp_name"], $new_path);
+
+        $text = $file['filename'] . " file upload with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
+
     }
 
     public function checkDeleteFile($file_id)
@@ -123,6 +127,10 @@ class FilesManager{
         $data = $this->DBManager->findOneSecure("SELECT `filepath` FROM `files` WHERE `id` = :file_id", $delete);
         unlink($data['filepath']);
         $data = $this->DBManager->findOneSecure("DELETE  FROM files WHERE  `id` = :file_id", $delete);
+
+        $text = $file_id . " file delete with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
+
         return true;
     }
 
@@ -148,6 +156,9 @@ class FilesManager{
     public function renameFIle($file_id, $new_name)
     {
         $update = $this->DBManager->findOneSecure("UPDATE `files` SET `filename` = :newname WHERE `id` =:file_id", ['file_id' => $file_id, 'newname' => $new_name]);
+
+        $text = "file rename with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
     }
 
     public function checkReplaceFile($file_id, $data)
@@ -178,6 +189,9 @@ class FilesManager{
     {
         $this->deleteFile($file_id);
         $this->uploadFile($data);
+
+        $text ="file replace with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
     }
 
     public function checkMoveFile($file_to_move, $folder_direction)
@@ -199,6 +213,9 @@ class FilesManager{
         }
         $update_container = $this->DBManager->findOneSecure("UPDATE `files` SET `filepath` = :newfilepath, `container_id` = :newcontainer WHERE `id` =:file_id", ['file_id' => $file_to_move, 'newcontainer' => $folder_direction, 'newfilepath' => $newpath]);
         rename($file['filepath'], $newpath);
+
+        $text = " Username " . $_SESSION['user_id'] . " move file with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
     }
 
     public function showFiles($user_id, $current_folder)
