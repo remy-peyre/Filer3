@@ -129,7 +129,7 @@ class FoldersManager{
         if(!empty($children_files)){
             for( $j = 0; $j < count($children_files); $j++){
                 $delete['file_id'] = $children_files[$j]['id'];
-                $data = $this->DBManager->findOneSecure("SELECT `filepath` FROM `files` WHERE `id` = :file_id", $delete);
+                $data = $this->DBManager->findOneSecure("SELECT * FROM `files` WHERE `id` = :file_id", $delete);
                 unlink($data['filepath']);
                 $data = $this->DBManager->findOneSecure("DELETE  FROM files WHERE  `id` = :file_id", $delete);
             }
