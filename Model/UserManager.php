@@ -52,7 +52,6 @@ class UserManager
         if($checkEmail !== false){
             $errors['email'] = 'email already used';
         }
-
     
         $checkUsername = $this->getUserByUsername($data['username']);
         if($checkUsername !== false){
@@ -97,7 +96,7 @@ class UserManager
         $this->DBManager->insert('users', $user);
         $user = $this->getUserByUsername($user['username']);
         mkdir("uploads/". $user['id']);
-
+        
         $text = $user['username'] . " just registered ! ";
         $this->watchActionLog("access.log", $text);
     }
@@ -144,4 +143,5 @@ class UserManager
         fwrite($file_log, $line);
         fclose($file_log);
     }
+
 }
