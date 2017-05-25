@@ -53,9 +53,6 @@
                     <img class="size_folder_upload" src="web/image/folder.png" alt="folder_img">
 
                     <div class="row_option_one_picture">
-                        <!--<a href="{{file.filepath}}" download="{{file.filepath}}">
-                            <img class="logo_download" src="web/image/download.png" alt="download"/>
-                        </a>-->
                         <div class="rename_folder_button">Rename</div>
                     </div>
                     <form class="form_rename_folder none" method="POST" action="?action=folder">
@@ -63,14 +60,7 @@
                         <input type="text" name="new_folder_name" value="" placeholder="NewName -> NewFolderName">
                         <input type="submit" value="Rename">
                     </form>
-
                     {{ folder.foldername }}
-
-                    <!--<form class="go_in_folder" method="POST" action="?action=switchCurrentFolder">
-                        <input type="hidden" name="new_current_folder" value="{{folder.id}}">
-                        <input type="submit" value="go to {{folder.foldername}}">
-                    </form>-->
-
                 </div>
             {% endfor %}
         </div>
