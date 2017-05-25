@@ -166,12 +166,15 @@ class FoldersManager{
         return $errors;
     }
 
-    public function moveFolder($folder_to_move, $folder_destination)
+    public function moveFolder($folder_to_move, $folder_destination, $renamed = "")
     {
         $folder = $this->getFolderById($folder_to_move);
         $destination = $this->getFolderById($folder_destination);
         $folder_dest = $destination['folderpath'] . '/' . $folder['id'];
-        rename($folder['folderpath']. '/', $folder_dest);
+        if($renamed == ""){
+            rename($folder['folderpath']. '/', $folder_dest);
+            $renamed = "Done";
+        }
         $update = $this->DBManager->findOneSecure("UPDATE folders SET folderpath = :folderpath, container_id = :container_id WHERE user_id = :user_id AND id = :folder_id", ['folderpath' => $folder_dest, 'user_id' => $_SESSION['user_id'], 'folder_id' => $folder_to_move, 'container_id' => $folder_destination]);
         $files = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND container_id = :folder_id", ['folder_id' => $folder['id'], 'user_id' => $_SESSION['user_id']]);
         if(!empty($files)){
@@ -180,6 +183,12 @@ class FoldersManager{
                 $new_file_path = $destination['folderpath'] . '/' . $folder['id'] . '/' . $file_path[count($file_path) - 1];
                 $update_files = $this->DBManager->findOneSecure("UPDATE files SET filepath = :filepath WHERE user_id = :user_id AND id = :file_id", ['user_id' => $_SESSION['user_id'], 'file_id' => $files[$j]['id'], 'filepath' => $new_file_path]);
             }
+        }
+        $all_folders = $this->DBManager->findAllSecure("SELECT * FROM folders WHERE user_id = :user_id AND container_id = :folder_id", ['folder_id' => $folder['id'], 'user_id' => $_SESSION['user_id']]);
+        if(!empty($all_folders)){
+            for($i = 0; $i < count($all_folders); $i++){
+               $this->moveFolder($all_folders[$i]['id'], $folder['id'],$renamed);
+            } 
         }
     }
 
