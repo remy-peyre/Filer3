@@ -6,6 +6,7 @@ class FilesManager{
     
     private $DBManager;
     private $UserManager;
+    private $FoldersManager;
     
     private static $instance = null;
 
@@ -20,6 +21,7 @@ class FilesManager{
     {
         $this->DBManager = DBManager::getInstance();
         $this->UserManager = UserManager::getInstance();
+        $this->FoldersManager = FoldersManager::getInstance();
     }
 
     public function getFileByFilename($filename)
@@ -36,7 +38,7 @@ class FilesManager{
         return $data;
     }
 
-    public function checkUploadFile($data)
+    public function checkUploadFile($data, $post)
     {
         $errors = array();
         if(!empty($data['name'])){
@@ -55,6 +57,12 @@ class FilesManager{
             $data = $this->getFileByFilename($nameToTest);
             if($data){
                 $errors['filename'] = "Name already used";
+            }
+            if($post["select_Folder"] != 0){
+                $checkFolder = $this->FoldersManager->getFolderById($post["select_Folder"]);
+                if(empty($checkFolder)){
+                    $errors['folder'] = "We can't find this folder";
+                }
             }
         }
         else{
@@ -75,10 +83,21 @@ class FilesManager{
         $file['filepath'] =  'uploads/'. $_SESSION['user_id'] . '/' . $file['filename'];
         $file['user_id'] = $_SESSION['user_id'];
         $file['type'] = $type;
-        $file['container_id'] = 0;
+        if($post["select_Folder"] == 0){
+            $file['container_id'] = 0;
+        }
+        else{
+             $file['container_id'] = $post["select_Folder"];
+        }
         $this->DBManager->insert('files', $file);
         $file = $this->DBManager->findOneSecure("SELECT * FROM files where filename = :filename", ['filename' => $file['filename']]);
-        $new_path = 'uploads/'. $_SESSION['user_id'] . '/' . $file['id'] .  strrchr(basename($data['name']), '.');
+        if($post['select_Folder'] == 0){
+            $new_path = 'uploads/'. $_SESSION['user_id'] . '/' . $file['id'] .  strrchr(basename($data['name']), '.');
+        }
+        else{
+            $folder = $this->FoldersManager->getFolderById($post["select_Folder"]);
+            $new_path = $folder['folderpath'] . '/' . $file['id'] .  strrchr(basename($data['name']), '.');
+        }
         $update = $this->DBManager->findOneSecure("UPDATE `files` SET `filepath` = :newpath WHERE `id` =:file_id", ['file_id' => $file['id'], 'newpath' => $new_path]);
         move_uploaded_file($data["tmp_name"], $new_path);
     }
