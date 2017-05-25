@@ -349,6 +349,22 @@ header nav .right_part_menu .color_link_menu_right a {
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+.upload .size_left_part_upload {
+  width: 100%;
+}
+.upload .size_left_part_upload .p_nav {
+  width: 100%;
+  margin: 20px 0px;
+}
+.upload .size_left_part_upload .underline {
+  text-decoration: underline;
+}
+.upload .size_left_part_upload .list_upload {
+  width: 80%;
+  width: 73%;
+  text-align: left;
+  margin: auto;
+}
 .upload .size_error_upload {
   width: 100%;
   text-align: center;
@@ -443,6 +459,19 @@ header nav .right_part_menu .color_link_menu_right a {
   display: flex;
   flex-direction: column;
   margin-right: 15px;
+}
+.your_files .size_row_folder_show .colum_for_folder .go_in_folder {
+  display: flex;
+  justify-content: center;
+}
+.your_files .size_row_folder_show .colum_for_folder .go_in_folder input[type=submit] {
+  background-color: #00a651;
+  padding: 5px;
+  border-radius: 5px;
+  border: 0;
+  color: white;
+  margin-top: 4px;
+  font-size: 14px;
 }
 .your_files .size_row_folder_show .colum_for_folder .size_folder_upload {
   width: 150px;

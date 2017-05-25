@@ -2,9 +2,16 @@
 
 {% block nav %}
 <section class="upload">
-    <div class="">
-        <p>Welcome, {{ user.username }}</p>
-        <p>Lists filename</p>
+    <div class="size_left_part_upload">
+        <p class="p_nav">Welcome, {{ user.username }}</p>
+        <p class="p_nav underline">Lists filename :</p>
+        <div class="list_upload">
+            {% for file in allFiles %}
+                    <p> {{file.filename}}</p>
+                <!--<p> {{file.type}}</p>
+                <p>{{file.filepath}}</p>-->
+            {% endfor %}
+        </div>
     </div>
 
 </section>

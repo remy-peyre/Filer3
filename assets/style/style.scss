@@ -369,6 +369,22 @@ main{
     flex-wrap: wrap;
     justify-content: flex-start;
 
+    .size_left_part_upload{
+        width: 100%;
+        .p_nav{
+            width: 100%;
+            margin: 20px 0px;
+        }
+        .underline{
+            text-decoration: underline;
+        }
+        .list_upload{
+            width: 80%;
+            width: 73%;
+            text-align: left;
+            margin: auto;
+        }
+    }
     .size_error_upload{
         width: 100%;
         text-align: center;
@@ -472,6 +488,20 @@ main{
             flex-direction: column;
             margin-right: 15px;
 
+            .go_in_folder{
+                display: flex;
+                justify-content: center;
+
+                input[type=submit]{
+                    background-color: #00a651;
+                    padding: 5px;
+                    border-radius: 5px;
+                    border: 0;
+                    color: white;
+                    margin-top: 4px;
+                    font-size: 14px;
+                }
+            }
             .size_folder_upload{
                 width: 150px;
                 height: 150px;
