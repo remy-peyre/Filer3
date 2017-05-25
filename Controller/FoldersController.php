@@ -27,6 +27,17 @@ class FoldersController extends BaseController
                                     ['user' => $user, 'errors' => $errors, 'allFolders' => $allFolders]);
                     }                    
                 }
+                else if(!empty($_POST['id_folder_to_rename'])){
+                    if(empty($folderManager->checkRenameFolder($_POST['id_folder_to_rename'], $_POST['new_folder_name']))){
+                        $folderManager->renameFolder($_POST['id_folder_to_rename'], $_POST['new_folder_name']);
+                        $this->redirect('yourFiles');
+                    }
+                    else{
+                        $errors = $folderManager->checkRenameFolder($_POST['id_folder_to_rename'], $_POST['new_folder_name']);
+                        echo $this->renderView('folder.html.twig',
+                                    ['user' => $user, 'errors' => $errors, 'allFolders' => $allFolders]);
+                    }                       
+                }
                 else{
                     echo $this->renderView('folder.html.twig',
                                 ['user' => $user, 'allFolders' => $allFolders]);

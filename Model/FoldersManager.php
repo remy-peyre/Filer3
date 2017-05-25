@@ -85,6 +85,17 @@ class FoldersManager{
        mkdir($new_path);
     }
 
+    public function checkRenameFolder($folder_id, $newname)
+    {
+        $errors = array();
+        return $errors;
+    }
+
+    public function renameFolder($folder_id, $newname)
+    {
+        $update = $this->DBManager->findOneSecure("UPDATE `folders` SET `foldername` = :newname WHERE `id` =:folder_id", ['folder_id' => $folder_id, 'newname' => $newname]);
+    }
+
     public function checkSwitchCurrentFolder($new_folder_id, $user_id)
     {
         $errors = array();

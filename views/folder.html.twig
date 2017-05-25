@@ -58,9 +58,9 @@
                         </a>-->
                         <div class="rename_folder_button">Rename</div>
                     </div>
-                    <form class="form_rename_folder none" method="POST" action="?action=yourFiles">
-                        <input class="none" type="text" name="id_file_to_rename" value="{{file.id}}">
-                        <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
+                    <form class="form_rename_folder none" method="POST" action="?action=folder">
+                        <input class="none" type="text" name="id_folder_to_rename" value="{{folder.id}}">
+                        <input type="text" name="new_folder_name" value="" placeholder="NewName -> NewFolderName">
                         <input type="submit" value="Rename">
                     </form>
 
