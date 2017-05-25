@@ -83,6 +83,9 @@ class FoldersManager{
         }  
        $update = $this->DBManager->findOneSecure("UPDATE folders SET folderpath = :folderpath where user_id = :user_id AND id = :folder_id", ['folderpath' => $new_path, 'user_id' => $_SESSION['user_id'], 'folder_id' => $data['id']]);
        mkdir($new_path);
+
+        $text = " Username " . $_SESSION['user_id'] . " has create a folder with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
     }
 
     public function checkRenameFolder($folder_id, $newname)
@@ -94,6 +97,9 @@ class FoldersManager{
     public function renameFolder($folder_id, $newname)
     {
         $update = $this->DBManager->findOneSecure("UPDATE `folders` SET `foldername` = :newname WHERE `id` =:folder_id", ['folder_id' => $folder_id, 'newname' => $newname]);
+
+        $text = " Username " . $_SESSION['user_id'] . " has rename a folder with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
     }
 
     public function checkSwitchCurrentFolder($new_folder_id, $user_id)
@@ -105,6 +111,9 @@ class FoldersManager{
     public function switchCurrentFolder($new_folder_id)
     {
         $_SESSION['current_folder'] = $new_folder_id;
+
+        $text = " Username " . $_SESSION['user_id'] . " has switch a folder with success ! ";
+        $this->UserManager->watchActionLog("access.log", $text);
     }
 
     public function giveCurrentPath($folder_id, $current_path = "")
