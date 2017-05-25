@@ -52,7 +52,7 @@ class FoldersController extends BaseController
                 else if(!empty($_POST['folder_to_move'])){
                     if(empty($folderManager->checkMoveFolder($_POST['folder_to_move'], $_POST['folder_destination']))){
                         $folderManager->moveFolder($_POST['folder_to_move'], $_POST['folder_destination']);
-                        //$this->redirect('yourFiles');
+                        $this->redirect('yourFiles');
                     }
                     else{
                         $errors = $folderManager->checkMoveFolder($_POST['folder_to_move'], $_POST['folder_destination']);

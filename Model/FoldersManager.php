@@ -156,7 +156,6 @@ class FoldersManager{
         }
         $delete_folder['folder_id'] = $folder_id;
         $data = $this->DBManager->findOneSecure("SELECT * FROM `folders` WHERE `id` = :folder_id", $delete_folder);
-        echo $data['folderpath'];
         rmdir($data['folderpath']);
         $data = $this->DBManager->findOneSecure("DELETE FROM `folders` WHERE  `id` = :folder_id", $delete_folder);  
     }
@@ -173,11 +172,10 @@ class FoldersManager{
         $destination = $this->getFolderById($folder_destination);
         $folder_dest = $destination['folderpath'] . '/' . $folder['id'];
         rename($folder['folderpath']. '/', $folder_dest);
-        $update = $this->DBManager->findOneSecure("UPDATE folders SET folderpath = :folderpath, container_id = :container_id WHERE user_id = :user_id AND id = :folder_id", ['folderpath' => $folder_dest, 'user_id' => $_SESSION['user_id'], 'folder_id' => $folder_to_move, 'container_id' => $folder_destination]).
-        $files = array();
+        $update = $this->DBManager->findOneSecure("UPDATE folders SET folderpath = :folderpath, container_id = :container_id WHERE user_id = :user_id AND id = :folder_id", ['folderpath' => $folder_dest, 'user_id' => $_SESSION['user_id'], 'folder_id' => $folder_to_move, 'container_id' => $folder_destination]);
         $files = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND container_id = :folder_id", ['folder_id' => $folder['id'], 'user_id' => $_SESSION['user_id']]);
         if(!empty($files)){
-            for($j = 0; $j < count($files) -1 ; $j++){
+            for($j = 0; $j < count($files); $j++){
                 $file_path  = explode('/', $files[$j]['filepath']);
                 $new_file_path = $destination['folderpath'] . '/' . $folder['id'] . '/' . $file_path[count($file_path) - 1];
                 $update_files = $this->DBManager->findOneSecure("UPDATE files SET filepath = :filepath WHERE user_id = :user_id AND id = :file_id", ['user_id' => $_SESSION['user_id'], 'file_id' => $files[$j]['id'], 'filepath' => $new_file_path]);

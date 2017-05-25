@@ -69,7 +69,7 @@ class FilesManager{
             $errors['fields'] = 'You have to select one file';
         }
         if (!empty ($errors)){
-            $text = $file['filename'] . " can't be upload with success ! ";
+            $text = "A file haven't been with success ! ";
             $this->UserManager->watchActionLog("security.log", $text);
         }
         return $errors;
