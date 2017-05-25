@@ -197,11 +197,25 @@ class FilesManager{
     public function checkMoveFile($file_to_move, $folder_direction)
     {
         $errors = array();
+        $data = $this->getFileById($file_to_move);
+        if(empty($data)){
+            $errors['file_to_move'] = "We can't find that file !";
+        }
+        else if($data['container_id'] == $folder_direction){
+            $errors['already_here'] = "This file is Already in that folder !";
+        }
+        else{
+            $checkName = $this->findOneSecure("SELECT * FROM `files` WHERE user_id = :user_id AND filename = :filename", ['user_id' => $_SESSION['user_id'], 'filename' => $data['filename']]);
+            if(!empty($checkName)){
+                $errors['name'] = "You already got a file with this name in that folder !";
+            }
+        }
         return $errors;
     }
 
     public function moveFile($file_to_move, $folder_direction)
     {
+        $_SESSION['current_folder'] = $folder_direction;
         $file = $this->getFileById($file_to_move);
         $path = explode('/', $file['filepath']);
         if($folder_direction == 0){
