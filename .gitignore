@@ -11,5 +11,6 @@
 !/cache/twig/.gitkeep
 /uploads/*
 !/uploads/.gitkeep
-/logs
+/logs/*
+/logs/.gitkeep
 /node_modules
