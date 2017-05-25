@@ -31,6 +31,13 @@ class FoldersManager{
         return $data;
     }
 
+    public function showAllFolders($user_id, $current_folder)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM folders WHERE user_id = :user_id",
+                                                ['user_id' => $user_id]);
+        return $data;       
+    }
+
     public function checkCreateFolder($folder_name, $container)
     {
         $errors = array();
@@ -93,7 +100,7 @@ class FoldersManager{
             for($i = count($path) -1; $i >= 0; $i-- ){
                 $path_to_return = $path_to_return . $path[$i] . '/';
             }
-            echo $path_to_return;
+            return $path_to_return;
         }
         else{
             $folder = $this->DBManager->findOneSecure("SELECT * FROM folders WHERE user_id = :user_id AND id = :folder_id", ['user_id' => $_SESSION['user_id'], 'folder_id' => $folder_id]);

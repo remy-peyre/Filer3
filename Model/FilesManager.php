@@ -167,6 +167,12 @@ class FilesManager{
         return $data;
     }
 
+    public function showAllFiles($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id",['user_id' => $user_id]);
+        return $data;
+    }
+
     public function showApplication($user_id, $current_folder)
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND type = :type AND container_id = :current_folder",
