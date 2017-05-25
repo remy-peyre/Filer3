@@ -129,6 +129,7 @@ class FilesController extends BaseController
             $manager = UserManager::getInstance();
             $fileManager = FilesManager::getInstance();
             $folderManager = FoldersManager::getInstance();
+            $currentPath = $folderManager->giveCurrentPath($_SESSION['current_folder']);
             $user = $manager->getUserById($_SESSION['user_id']);
             $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
             $allFilesApplication = $fileManager->showApplication($_SESSION['user_id'], $_SESSION['current_folder']);
@@ -145,6 +146,7 @@ class FilesController extends BaseController
             $manager = UserManager::getInstance();
             $fileManager = FilesManager::getInstance();
             $folderManager = FoldersManager::getInstance();
+            $currentPath = $folderManager->giveCurrentPath($_SESSION['current_folder']);
             $user = $manager->getUserById($_SESSION['user_id']);
             $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
             $allFilesPicture = $fileManager->showPicture($_SESSION['user_id'], $_SESSION['current_folder']);
@@ -161,6 +163,7 @@ class FilesController extends BaseController
             $manager = UserManager::getInstance();
             $fileManager = FilesManager::getInstance();
             $folderManager = FoldersManager::getInstance();
+            $currentPath = $folderManager->giveCurrentPath($_SESSION['current_folder']);
             $user = $manager->getUserById($_SESSION['user_id']);
             $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
             $allFilesAudio = $fileManager->showAudio($_SESSION['user_id'], $_SESSION['current_folder']);
