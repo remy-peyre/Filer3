@@ -26,13 +26,12 @@
 
             <p class="center_option">Move a folder in a folder:</p>
             <p>Select a folder, where you want him to go<br>
-                <select name="wich_folder">
-                    <option value="0">Dossier principal</option>
+                <select name="folder_to_move">
                     {% for folder in allFolders %}
                         <option value="{{folder.id}}">{{folder.foldername}}</option>
                     {% endfor %}
                 </select>
-                <select name="wich_folder">
+                <select name="folder_destination">
                     <option value="0">Dossier principal</option>
                     {% for folder in allFolders %}
                         <option value="{{folder.id}}">{{folder.foldername}}</option>

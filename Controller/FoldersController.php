@@ -49,6 +49,17 @@ class FoldersController extends BaseController
                                     ['user' => $user, 'errors' => $errors, 'allFolders' => $allFolders]);
                     }                       
                 }
+                else if(!empty($_POST['folder_to_move'])){
+                    if(empty($folderManager->checkMoveFolder($_POST['folder_to_move'], $_POST['folder_destination']))){
+                        $folderManager->moveFolder($_POST['folder_to_move'], $_POST['folder_destination']);
+                        //$this->redirect('yourFiles');
+                    }
+                    else{
+                        $errors = $folderManager->checkMoveFolder($_POST['folder_to_move'], $_POST['folder_destination']);
+                        echo $this->renderView('folder.html.twig',
+                                    ['user' => $user, 'errors' => $errors, 'allFolders' => $allFolders]);
+                    }                     
+                }
                 else{
                     echo $this->renderView('folder.html.twig',
                                 ['user' => $user, 'allFolders' => $allFolders]);
