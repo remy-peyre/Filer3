@@ -614,6 +614,10 @@ header nav .right_part_menu .color_link_menu_right a {
 }
 .folder .form_create_folder input[type=submit] {
   width: 52%;
+  background-color: #3B5998;
+  border: 0;
+  color: white;
+  padding: 3px;
 }
 .folder .row_show_folder_in_folder {
   width: 100%;
