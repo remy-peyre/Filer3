@@ -15,7 +15,7 @@ class SecurityController extends BaseController
             if (empty($manager->userCheckLogin($_POST)))
             {
                 $manager->userLogin($_POST['username']);
-                $this->redirect('userAccount');
+                $this->redirect('yourFiles');
             }
             else {
                 $errors = $manager->userCheckLogin($_POST);
