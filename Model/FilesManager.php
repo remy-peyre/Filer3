@@ -215,6 +215,7 @@ class FilesManager{
 
     public function moveFile($file_to_move, $folder_direction)
     {
+        $_SESSION['current_folder'] = $folder_direction;
         $file = $this->getFileById($file_to_move);
         $path = explode('/', $file['filepath']);
         if($folder_direction == 0){

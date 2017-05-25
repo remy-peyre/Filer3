@@ -61,6 +61,7 @@ class FoldersManager{
 
     public function createFolder($folder_name, $container)
     {
+        $_SESSION['current_folder'] = $container;
         $folder['foldername'] = $folder_name;
         if($container == 0){
             $folder['folderpath'] = 'uploads/' . $_SESSION['user_id'] . '/' . $folder_name;
@@ -107,7 +108,7 @@ class FoldersManager{
     public function renameFolder($folder_id, $newname)
     {
         $update = $this->DBManager->findOneSecure("UPDATE `folders` SET `foldername` = :newname WHERE `id` =:folder_id", ['folder_id' => $folder_id, 'newname' => $newname]);
-
+        $_SESSION['current_folder'] = $folder_id;
         $text = " Username " . $_SESSION['user_id'] . " has rename a folder with success ! ";
         $this->UserManager->watchActionLog("access.log", $text);
     }
@@ -124,6 +125,7 @@ class FoldersManager{
 
     public function deleteFolder($folder_id)
     {
+        $_SESSION['current_folder'] = 0;
         $children_folders = $this->DBManager->findAllSecure("SELECT * FROM `folders` WHERE user_id = :user_id AND container_id = :container_id", ['container_id' => $folder_id, 'user_id' => $_SESSION['user_id']]);
         $children_files = $this->DBManager->findAllSecure("SELECT * FROM `files` WHERE user_id = :user_id AND container_id = :container_id", ['container_id' => $folder_id, 'user_id' => $_SESSION['user_id']]);
         if(!empty($children_files)){
