@@ -197,6 +197,7 @@ class FilesManager{
     public function checkMoveFile($file_to_move, $folder_direction)
     {
         $errors = array();
+        
         return $errors;
     }
 

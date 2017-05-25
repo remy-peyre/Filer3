@@ -140,7 +140,7 @@ class FoldersManager{
             }          
         }
         $delete['folder_id'] = $folder_id;
-        $data = $this->DBManager->findOneSecure("SELECT `folderpath` FROM `folders` WHERE `id` = :folder_id", $delete);
+        $data = $this->DBManager->findOneSecure("SELECT * FROM `folders` WHERE `id` = :folder_id", $delete);
         rmdir($data['folderpath']);
         $data = $this->DBManager->findOneSecure("DELETE  FROM folders WHERE  `id` = :folder_id", $delete);  
     }
