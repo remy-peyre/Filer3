@@ -41,6 +41,17 @@ class FilesController extends BaseController
                                     ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
                     }
                 }
+                else if(!empty($_POST['file_to_move'])){
+                    if(empty($fileManager->checkMoveFile($_POST['file_to_move'], $_POST['folder_who_recept']))){
+                        $fileManager->moveFile($_POST['file_to_move'], $_POST['folder_who_recept']);
+                        $this->redirect('yourFiles');
+                    }
+                    else{
+                        $errors = $fileManager->checkMoveFile($_POST['file_to_move'], $_POST['folder_who_recept']);
+                        echo $this->renderView('upload.html.twig',
+                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
+                    }             
+                }
             }
             else{
                 echo $this->renderView('upload.html.twig',

@@ -180,8 +180,29 @@ class FilesManager{
         $this->uploadFile($data);
     }
 
-    public function showFiles($user_id, $current_folder)
+    public function checkMoveFile($file_to_move, $folder_direction)
     {
+        $errors = array();
+        return $errors;
+    }
+
+    public function moveFile($file_to_move, $folder_direction)
+    {
+        $file = $this->getFileById($file_to_move);
+        $path = explode('/', $file['filepath']);
+        if($folder_direction == 0){
+            $newpath = 'uploads/' . $_SESSION['user_id'] . '/' . $path[count($path)-1];
+        }
+        else{
+            $folder = $this->FoldersManager->getFolderById($folder_direction);
+            $newpath = $folder['folderpath'] . '/' . $path[count($path)-1];
+        }
+        $update_container = $this->DBManager->findOneSecure("UPDATE `files` SET `filepath` = :newfilepath, `container_id` = :newcontainer WHERE `id` =:file_id", ['file_id' => $file_to_move, 'newcontainer' => $folder_direction, 'newfilepath' => $newpath]);
+        rename($file['filepath'], $newpath);
+    }
+
+    public function showFiles($user_id, $current_folder)
+    {   
         $data = $this->DBManager->findAllSecure("SELECT * FROM files WHERE user_id = :user_id AND container_id = :current_folder",['user_id' => $user_id, 'current_folder' =>$current_folder]);
         return $data;
     }

@@ -63,6 +63,23 @@
                 </p>
             </form>
         </div>
+
+        <div>
+            <form method="POST" action="?action=upload"> 
+                    <select name="file_to_move">
+                        {% for file in allFiles %}
+                            <option value="{{file.id}}">{{file.filename}}</option>
+                        {% endfor %}
+                    </select>         
+                    <select name="folder_who_recept">
+                        <option value="0">Main Folder</option>
+                        {% for folder in allFolders %}
+                            <option value="{{folder.id}}">{{folder.foldername}}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Move that file buddy">
+            </form>
+        </div>
     </div>
 </section>
 {% endblock %}
