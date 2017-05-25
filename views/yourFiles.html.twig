@@ -3,7 +3,7 @@
 {% block content %}
 <section class="your_files">
     Current Folder : {{currentPath}}
-    <div>
+    <div class="error_all">
         {% for error in errors %}
             {{ error }}<br>
         {% endfor %}

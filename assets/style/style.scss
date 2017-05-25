@@ -282,7 +282,7 @@ main{
         justify-content: center;
         text-align: center;
         background-color: #3B5998;
-        height: 600px;
+        height: 1000px;
         color: white;
         border-top: 1px solid #ababab;
 
@@ -484,6 +484,10 @@ main{
     margin-left: 10px;
     margin-bottom: 20px;
 
+    .error_all{
+        text-align: center;
+        color: red;
+    }
     .size_picture_upload{
         width: 150px;
         height: 150px;

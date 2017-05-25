@@ -10,5 +10,30 @@ php composer-setup.php
 
 php -r "unlink('composer-setup.php');"
 
+npm install
 
 #### Add file .sql in phpmyadmin
+
+#### Create a directory config, with a file config.yml  
+
+routes:  
+    register: 'Security:register'  
+    login: 'Security:login'  
+    logout: 'Security:logout'  
+    userAccount: 'Default:userAccount'  
+    profil: 'Default:profil'  
+    yourFiles: 'Files:yourFiles'  
+    upload : 'Files:upload'  
+    application: 'Files:application'  
+    picture: 'Files:picture'  
+    audioVideo: 'Files:audioVideo'  
+    folder : 'Folders:folder'  
+    switchCurrentFolder: 'Folders:switchCurrentFolder'  
+
+defaut_route: 'home'
+
+db_config:  
+    name: 'filer3'  
+    host: 'localhost'  
+    user: 'root'  
+    pass: 'root' 
