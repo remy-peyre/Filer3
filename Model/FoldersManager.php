@@ -6,7 +6,6 @@ class FoldersManager{
     
     private $DBManager;
     private $UserManager;
-    private $FilesManager;
     
     private static $instance = null;
 
@@ -21,7 +20,13 @@ class FoldersManager{
     {
         $this->DBManager = DBManager::getInstance();
         $this->UserManager = UserManager::getInstance();
-        $this->FilesManager = FilesManager::getInstance();
+    }
+
+    public function getFolderById($folder_id)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM folders WHERE id = :folder_id AND user_id = :user_id",
+                                ['folder_id' => $folder_id, 'user_id' => $_SESSION['user_id']]);
+        return $data;
     }
 
     public function showFolders($user_id, $current_folder)
@@ -31,7 +36,7 @@ class FoldersManager{
         return $data;
     }
 
-    public function showAllFolders($user_id, $current_folder)
+    public function showAllFolders($user_id)
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM folders WHERE user_id = :user_id",
                                                 ['user_id' => $user_id]);
@@ -106,6 +111,7 @@ class FoldersManager{
             $folder = $this->DBManager->findOneSecure("SELECT * FROM folders WHERE user_id = :user_id AND id = :folder_id", ['user_id' => $_SESSION['user_id'], 'folder_id' => $folder_id]);
             $current_path = $current_path . $folder['foldername'] . '/';
             $parent_name = $this->giveCurrentPath($folder['container_id'], $current_path);
+            return $parent_name;
         }
     }
 

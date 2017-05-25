@@ -16,6 +16,8 @@ class FilesController extends BaseController
             $user = $manager->getUserById($_SESSION['user_id']);
             $fileManager = FilesManager::getInstance();
             $allFiles = $fileManager->showAllFiles($_SESSION['user_id'], $_SESSION['current_folder']);
+            $folderManager = FoldersManager::getInstance();
+            $allFolders = $folderManager->showAllFolders($_SESSION['user_id']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(!empty($_POST['upload_button'])){
                     if(empty($fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST))){
@@ -25,7 +27,7 @@ class FilesController extends BaseController
                     else{
                         $errors = $fileManager->checkUploadFile($_FILES['uploaded_file'], $_POST);
                         echo $this->renderView('upload.html.twig',
-                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles]);
+                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
                     }
                 }
                 else if(!empty($_POST['replace_button'])){
@@ -36,13 +38,13 @@ class FilesController extends BaseController
                     else{
                         $errors = $fileManager->checkReplaceFile($_POST['select_replace'], $_FILES['replacement_file']);
                         echo $this->renderView('upload.html.twig',
-                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles]);
+                                    ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
                     }
                 }
             }
             else{
                 echo $this->renderView('upload.html.twig',
-                                        ['user' => $user, 'allFiles' => $allFiles]);
+                                        ['user' => $user, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
             }
         }
         else{

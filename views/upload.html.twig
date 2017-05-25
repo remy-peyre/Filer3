@@ -34,7 +34,13 @@
                     Files .jpg / .jpeg / .png / .pdf / .txt / .mp3 / .mp4
                     <br>
                     <input type="file" name="uploaded_file">
-                    <input type="txt" name="initial_new_name">
+                    <input type="txt" name="initial_new_name" placeholder="You can rename your file here if you want">
+                    <select name="select_Folder">
+                        <option value="0">Current Folder</option>
+                        {% for folder in allFolders %}
+                            <option value="{{folder.id}}">{{folder.foldername}}</option>
+                        {% endfor %}
+                    </select>
                     <input type="submit" name="upload_button" value="Upload">
                 </p>
             </form>
