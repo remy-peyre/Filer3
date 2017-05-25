@@ -10,5 +10,6 @@ php composer-setup.php
 
 php -r "unlink('composer-setup.php');"
 
+npm install
 
 #### Add file .sql in phpmyadmin
