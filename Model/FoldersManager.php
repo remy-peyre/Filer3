@@ -88,6 +88,16 @@ class FoldersManager{
     public function checkRenameFolder($folder_id, $newname)
     {
         $errors = array();
+        $data = $this->DBManager->findOneSecure("SELECT * FROM `folders` WHERE user_id = :user_id AND id = :folder_id", ['user_id' => $_SESSION['user_id'], 'folder_id' => $folder_id]);
+        if(empty($data)){
+            $errors['id_folder'] = "We can't find that folder !";
+        }      
+        else{
+            $checkName = $this->DBManager->findOneSecure("SELECT * FROM `folders` WHERE user_id = :user_id AND foldername = :newname AND container_id = :container_id", ['user_id' => $_SESSION['user_id'], 'newname' => $newname, 'container_id' => $data['container_id']]);
+            if(!empty($checkName)){
+                $errors['name_folder'] = "You already got one folder with this name in the same folder ! ";
+            }
+        }
         return $errors;
     }
 
@@ -99,6 +109,10 @@ class FoldersManager{
     public function checkDeleteFolder($folder_id)
     {
         $errors = array();
+        $data = $this->DBManager->findOneSecure("SELECT * FROM `folders` WHERE user_id = :user_id AND id = :folder_id", ['user_id' => $_SESSION['user_id'], 'folder_id' => $folder_id]);
+        if(empty($data)){
+            $errors['id_folder'] = "We can't find that folder !";
+        }
         return $errors;
     }
 
@@ -128,6 +142,12 @@ class FoldersManager{
     public function checkSwitchCurrentFolder($new_folder_id, $user_id)
     {
         $errors = array();
+        if($new_folder_id != 0){
+            $data = $this->DBManager->findOneSecure("SELECT * FROM `folders` WHERE user_id = :user_id AND id = :folder_id", ['user_id' => $user_id, 'folder_id' => $new_folder_id]);
+            if(empty($data)){
+                $errors['id_folder'] = "We can't find that folder !";
+            }
+        }
         return $errors;
     }
 

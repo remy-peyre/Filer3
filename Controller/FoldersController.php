@@ -71,16 +71,16 @@ class FoldersController extends BaseController
             $manager = UserManager::getInstance();
             $filesManager = FilesManager::getInstance();
             $folderManager = FoldersManager::getInstance();
+            $user = $manager->getUserById($_SESSION['user_id']);
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 if(isset($_POST['new_current_folder'])){
                     if(empty($folderManager->checkSwitchCurrentFolder($_POST['new_current_folder'], $_SESSION['user_id']))){
                         $folderManager->switchCurrentFolder($_POST['new_current_folder']);
                     }
                     else{
-                        echo $_SESSION['current_folder'];
                         $errors = $folderManager->checkSwitchCurrentFolder($_POST['new_current_folder'], $_SESSION['user_id']);
                         $allFolders = $folderManager->showFolders($_SESSION['user_id'], $_SESSION['current_folder']);
-                        $allFiles = $fileManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
+                        $allFiles = $filesManager->showFiles($_SESSION['user_id'], $_SESSION['current_folder']);
                         echo $this->renderView('yourFiles.html.twig',
                                     ['user' => $user, 'errors' => $errors, 'allFiles' => $allFiles, 'allFolders' => $allFolders]);
                     }
