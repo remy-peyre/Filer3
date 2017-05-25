@@ -203,8 +203,10 @@ class FilesManager{
 
     public function replaceFile($file_id, $data)
     {
+        $file = $this->getFileById($file_id);
         $this->deleteFile($file_id);
-        $this->uploadFile($data);
+        $replace_place['select_Folder'] = $file['container_id'];
+        $this->uploadFile($data, $replace_place);
 
         $text ="file replace with success ! ";
         $this->UserManager->watchActionLog("access.log", $text);
