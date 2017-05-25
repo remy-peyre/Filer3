@@ -86,15 +86,12 @@
                 <div class="column_right_containte">
 
                 </div>
-                    {% if error is defined and error is not empty %}
-                        <p class="error">Error : {{ error }}</p>
-                    {% endif %}
+                {% if error is defined and error is not empty %}
+                    <p class="error">Error : {{ error }}</p>
+                {% endif %}
 
 
-                    {% block content %}{% endblock %}
-
-
-                <!--<div class="bottom_area_grey"></div>-->
+                {% block content %}{% endblock %}
 
             </div>
 

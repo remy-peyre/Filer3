@@ -30,9 +30,7 @@
         <div class="size_row_img_show">
             {% for file in allFilesAudio %}
                 <div class="column_for_all_info">
-                    <!--<p> {{file.type}}</p>-->
                     {% if file.type == "audio" %}
-                        <!--<p>{{file.filepath}}</p>-->
                         <form class="form_delete" method="POST" action="?action=yourFiles">
                             <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                             <input type="submit" value="">
@@ -40,9 +38,6 @@
                         <audio class="size_picture_upload" src="{{file.filepath}}" controls></audio>
 
                         <div class="row_option_one_picture">
-                            <!--<a href="{{file.filepath}}" download="{{file.filepath}}">
-                                        <img class="logo_download" src="web/image/download.png" alt="download"/>
-                                    </a>-->
                             <div class="rename_button">Rename</div>
                         </div>
 
@@ -59,9 +54,7 @@
 
             {% for file in allFilesVideo %}
                 <div class="column_for_all_info">
-                    <!--<p> {{file.type}}</p>-->
                     {% if file.type == "video" %}
-                        <!--<p>{{file.filepath}}</p>-->
                         <form class="form_delete" method="POST" action="?action=yourFiles">
                             <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                             <input type="submit" value="">

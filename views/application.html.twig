@@ -30,9 +30,7 @@
         <div class="size_row_img_show">
             {% for file in allFilesApplication %}
                 <div class="column_for_all_info">
-                <!--<p> {{file.type}}</p>-->
                     {% if file.type == "application" %}
-                        <!--<p>{{file.filepath}}</p>-->
                         <form class="form_delete" method="POST" action="?action=yourFiles">
                             <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                             <input type="submit" value="">

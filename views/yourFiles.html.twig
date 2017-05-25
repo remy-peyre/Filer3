@@ -91,7 +91,6 @@
                 {% endif %}
 
                 {% if file.type == "video" %}
-                    <!--<p>{{file.filepath}}</p>-->
                     <form class="form_delete" method="POST" action="?action=yourFiles">
                         <input class="none" type="text" name="id_file_to_delete" value="{{file.id}}">
                         <input type="submit" value="">
@@ -107,7 +106,6 @@
                         <input type="text" name="new_name" value="" placeholder="NewName -> NewName.ext">
                         <input type="submit" value="Rename">
                     </form>
-
                 {% endif %}
                 <p> {{file.filename}}</p>
             </div>
