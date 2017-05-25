@@ -1,5 +1,4 @@
 window.onload = function () {
-    console.log('coucou');
     var renameButton = document.getElementsByClassName("rename_button");
 
     for (var i = 0; i< renameButton.length; i++ ){
@@ -7,10 +6,6 @@ window.onload = function () {
             this.parentNode.parentNode.childNodes[7].classList.remove("none");
             this.parentNode.parentNode.childNodes[7].className = "form_rename";
             this.parentNode.parentNode.childNodes[7].style.display = 'block';
-            /*console.log(this.parentNode.parentNode.childNodes[5]);
-            console.log(this.parentNode.parentNode.childNodes[6]);
-            console.log(this.parentNode.parentNode.childNodes[7]);
-            console.log(this.parentNode.parentNode.childNodes[7]);*/
         }
     }
 
