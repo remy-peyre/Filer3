@@ -583,6 +583,11 @@ header nav .right_part_menu .color_link_menu_right a {
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.folder .size_error_folder {
+  width: 100%;
+  text-align: center;
+  color: red;
+}
 .folder .form_create_folder {
   width: 46%;
   display: flex;
@@ -654,6 +659,9 @@ header nav .right_part_menu .color_link_menu_right a {
   background-color: #00a651;
   color: white;
 }
+.folder .row_show_folder_in_folder .colum_show_folder_in_folder .none {
+  display: none;
+}
 .folder .row_show_folder_in_folder .colum_show_folder_in_folder .form_folder_rename {
   display: flex;
   flex-direction: column;
@@ -674,8 +682,15 @@ header nav .right_part_menu .color_link_menu_right a {
   color: white;
   padding: 3px;
 }
-.folder .row_show_folder_in_folder .colum_show_folder_in_folder .none {
-  display: none;
+.folder .row_show_folder_in_folder .colum_show_folder_in_folder .form_rename_folder {
+  text-align: center;
+}
+.folder .row_show_folder_in_folder .colum_show_folder_in_folder .form_rename_folder input[type=submit] {
+  width: 50%;
+  background-color: #3B5998;
+  border: 0;
+  color: white;
+  padding: 3px;
 }
 
 /*# sourceMappingURL=style.css.map */

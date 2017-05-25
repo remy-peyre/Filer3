@@ -2,10 +2,11 @@
 
 {% block content %}
     <section class="folder">
-        {% for error in errors %}
-            {{ error }}<br>
-        {% endfor %}
-
+        <div class="size_error_folder">
+            {% for error in errors %}
+                {{ error }}<br>
+            {% endfor %}
+        </div>
         <form class="form_create_folder" method="POST" action="?action=folder">
             <p class="center_option">New folder :</p>
             <p>Create a folder<br>

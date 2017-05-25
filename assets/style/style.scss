@@ -620,6 +620,11 @@ main{
     flex-wrap: wrap;
     justify-content: space-around;
 
+    .size_error_folder{
+        width: 100%;
+        text-align: center;
+        color: red;
+    }
     .form_create_folder{
         width: 46%;
         display: flex;
@@ -694,6 +699,9 @@ main{
                 background-color: #00a651;
                 color: white;
             }
+            .none{
+                display: none;
+            }
             .form_folder_rename{
                 display: flex;
                 flex-direction: column;
@@ -715,8 +723,16 @@ main{
                     padding: 3px;
                 }
             }
-            .none{
-                display: none;
+            .form_rename_folder{
+                text-align: center;
+                input[type=submit]{
+                    width: 50%;
+                    background-color: #3B5998;
+                    border: 0;
+                    color: white;
+                    padding: 3px;
+
+                }
             }
         }
     }
